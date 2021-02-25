@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\Vacuum.cs" />
     <Compile Include="Assets\Actors\Fases\Scripts\Stairs.cs" />
     <Compile Include="Assets\Actors\Player\Scripts\Player.cs" />
     <Reference Include="UnityEngine">

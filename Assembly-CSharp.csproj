@@ -64,8 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\DustCoff.cs" />
+    <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\Enemy.cs" />
     <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\Vacuum.cs" />
     <Compile Include="Assets\Actors\Fases\Scripts\Stairs.cs" />
+    <Compile Include="Assets\Actors\Fases\Scripts\Wall.cs" />
     <Compile Include="Assets\Actors\Player\Scripts\Player.cs" />
     <Reference Include="UnityEngine">
       <HintPath>F:/Program Files/Unity/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

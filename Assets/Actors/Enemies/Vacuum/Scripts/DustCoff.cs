@@ -17,7 +17,7 @@ public class DustCoff : MonoBehaviour{
         dust_rig = GetComponent<Rigidbody2D>();
         dust_play = FindObjectOfType<Player>();
         dust_vac = FindObjectOfType<Vacuum>();
-        speed = 0.1f;
+        speed = 0.2f;
         dust_startPos = dust_vac.GetComponent<Rigidbody2D>().position;
         dust_endPos = dust_play.GetComponent<Rigidbody2D>().position;
         dust_dir = dust_endPos - dust_startPos;

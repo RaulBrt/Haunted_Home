@@ -14,16 +14,20 @@ public class Player : MonoBehaviour {
     public Animator anim;
     bool[] key = new bool[5] { false, false, false, false, false };
     bool[] attack = new bool[4] { false, false, false, false };
-    public bool attacking = false;
+    public bool attacking, invincible;
     int health,i;
 
     IEnumerator Attack(float tempo){
         yield return new WaitForSeconds(tempo);
         attacking = false;
+        invincible = false;
     }
-    /*public bool getAttacking(){
-        return attacking;
-    }*/
+    IEnumerator IFrames(float tempo){
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(tempo);
+        spriteRenderer.color = Color.white;
+        invincible = false;
+    }
     public int getAttackDir() {
         int dir = 0;
         if (attack[0]){
@@ -48,16 +52,44 @@ public class Player : MonoBehaviour {
             dir = 3;
         return dir;
     }
+    int getDir(){
+        int dir = 0;
+        if (key[0]){
+            if (key[1])
+                dir = 8;
+            else if (key[3])
+                dir = 2;
+            else
+                dir = 1;
+        }
+        else if (key[2]){
+            if (key[1])
+                dir = 6;
+            else if (key[3])
+                dir = 4;
+            else
+                dir = 5;
+        }
+        else if (key[1])
+            dir = 7;
+        else if (key[3])
+            dir = 3;
+        return dir;
+    }
     void OnCollisionEnter2D(Collision2D collision) {
         Vacuum vac = collision.gameObject.GetComponent<Vacuum>();
         DustCoff dust = collision.gameObject.GetComponent<DustCoff>();
-        if (vac != null && !attacking) {
+        if (vac != null && !attacking && !invincible){
             health -= 20;
+            StartCoroutine(IFrames(0.75f));
         }
-        if (dust != null) {
+        if (dust != null && !invincible){
             health -= 10;
+            invincible = true;
+            StartCoroutine(IFrames(0.75f));
         }
-        //PlayerStats.setHealth(health);
+        Debug.Log(PlayerStats.getHealth());
+        PlayerStats.setHealth(health);
     }
     void die(){
         Debug.Log("Dead");
@@ -70,6 +102,8 @@ public class Player : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         health = PlayerStats.getHealth();
+        attacking = false;
+        invincible = false;
 
     }
     void Update() {

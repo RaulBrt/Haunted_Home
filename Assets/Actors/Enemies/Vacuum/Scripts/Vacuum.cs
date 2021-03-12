@@ -52,6 +52,34 @@ public class Vacuum : MonoBehaviour{
         }
         return angulo;
     }
+    int getWalkingDir(float angulo){
+        int dir = 0;
+        if (angulo > 247 && angulo <= 292){
+            dir = 5;
+        }
+        if (angulo > 202 && angulo <= 247){
+            dir = 6;
+        }
+        if (angulo > 157 && angulo <= 202){
+            dir = 7;
+        }
+        if (angulo > 112 && angulo <= 157){
+            dir = 8;
+        }
+        if (angulo > 68 && angulo <= 112){
+            dir = 1;
+        }
+        if (angulo > 23 && angulo <= 68){
+            dir = 2;
+        }
+        if ((angulo > 337 && angulo <= 360) || (angulo > 0 && angulo <= 23)){
+            dir = 3;
+        }
+        if (angulo > 292 && angulo <= 337){
+            dir = 4;
+        }
+        return dir;
+    }
     bool checkDamage(){
         bool damaged = false;
         if(vac_play.getAttackDir() == 1 && getWalkingAngle(getDir()) > 247 && getWalkingAngle(getDir()) <= 292){
@@ -116,8 +144,7 @@ public class Vacuum : MonoBehaviour{
     void Update(){
         vac_rig.mass = 1;
         action = Random.Range(0, 10000);
-        vac_anim.SetFloat("Walking Angle", getWalkingAngle(getDir()));
-        //Debug.Log(getWalkingAngle(getDir()));
+        vac_anim.SetInteger("Walking Angle", getWalkingDir(getWalkingAngle(getDir())));
         if (action <= 9920 && !coffing && !rushing){
             Walk(vac_speed);
         }
@@ -133,7 +160,7 @@ public class Vacuum : MonoBehaviour{
             coffing = false;
         }
         if(health < 0){
-            Debug.Log("Morri");
+            gameObject.SetActive(false);
         }
     }
     void LateUpdate(){

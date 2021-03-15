@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2d7c8b9ad0b4c4bb105c866c9c061c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: Storage
+  LevelName: Main Hall
   anim: {fileID: 473197264}
 --- !u!1 &1443446542
 GameObject:

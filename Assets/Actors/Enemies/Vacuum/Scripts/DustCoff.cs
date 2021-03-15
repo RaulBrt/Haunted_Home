@@ -11,6 +11,13 @@ public class DustCoff : MonoBehaviour{
     Collider2D vac_collider;
     Vector2 dust_startPos, dust_endPos, dust_dir;
     float speed;
+    void Awake()
+    {
+        if (PlayerStats.getDefeated(0))
+        {
+            gameObject.SetActive(false);
+        }
+    }
     bool moving;
     void Start(){
         dust_anim = GetComponent<Animator>();

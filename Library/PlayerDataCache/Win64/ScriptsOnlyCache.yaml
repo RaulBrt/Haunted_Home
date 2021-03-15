@@ -623,6 +623,6 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 19
   scenePathNames:
-  - Assets/Scenes/DeathScreen.unity
   - Assets/Scenes/Storage.unity
+  - Assets/Scenes/DeathScreen.unity
   playerPath: F:/Projects/Unity/HauntedHome/Game/HauntedHome.exe

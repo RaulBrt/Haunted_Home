@@ -14,8 +14,11 @@ public class Vacuum : MonoBehaviour{
     [SerializeField] float vac_speed;
     int action,health;
     bool coffing, rushing;
-   // public double angle;
+    // public double angle;
     IEnumerator delay(float seconds){
+        yield return new WaitForSeconds(seconds);
+    }
+    IEnumerator Coff(float seconds){
         yield return new WaitForSeconds(seconds);
         coffing = false;
     }
@@ -38,7 +41,7 @@ public class Vacuum : MonoBehaviour{
         coffing = true;
         //vac_rig.velocity = Vector3.zero;
         Instantiate(Dust, vac_rig.position, Quaternion.identity); ;
-        StartCoroutine(delay(0.5f));
+        StartCoroutine(Coff(0.5f));
     }
     float getWalkingAngle(Vector2 direcao){
         float angulo;
@@ -51,6 +54,10 @@ public class Vacuum : MonoBehaviour{
             angulo += 360;
         }
         return angulo;
+    }
+    public int getHealth()
+    {
+        return health;
     }
     int getWalkingDir(float angulo){
         int dir = 0;
@@ -128,6 +135,11 @@ public class Vacuum : MonoBehaviour{
             }
         }
     }
+    void Awake(){
+        if (PlayerStats.getDefeated(0) == true){
+            gameObject.SetActive(false);
+        }
+    }
     void Start(){
         vac_rig = GetComponent<Rigidbody2D>();
         vac_anim = GetComponent<Animator>();
@@ -137,7 +149,8 @@ public class Vacuum : MonoBehaviour{
         vac_speed = 2;
         coffing = false;
         rushing = false;
-        health = 100;
+        health = 10;
+        StartCoroutine(delay(1.5f));
     }
 
     // Update is called once per frame
@@ -160,6 +173,7 @@ public class Vacuum : MonoBehaviour{
             coffing = false;
         }
         if(health < 0){
+            PlayerStats.setDefeated(0, true);
             gameObject.SetActive(false);
         }
     }

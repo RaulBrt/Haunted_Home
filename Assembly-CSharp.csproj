@@ -55,8 +55,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Fire.cs" />
+     <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Stove.cs" />
      <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\DustCoff.cs" />
      <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\Vacuum.cs" />
+     <Compile Include="Assets\Actors\Fases\Scripts\Camera.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\DeathScreen.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\Stairs.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\StorageExit.cs" />

@@ -40,7 +40,7 @@ public class Vacuum : MonoBehaviour{
         Debug.Log("Coff");
         coffing = true;
         //vac_rig.velocity = Vector3.zero;
-        Instantiate(Dust, vac_rig.position, Quaternion.identity); ;
+        Instantiate(Dust, vac_rig.position, Quaternion.identity);
         StartCoroutine(Coff(0.5f));
     }
     float getWalkingAngle(Vector2 direcao){
@@ -132,6 +132,14 @@ public class Vacuum : MonoBehaviour{
                 if (checkDamage()){
                     health -= 5;
                 }
+                else if (!PlayerStats.getInvincible()) { 
+                    PlayerStats.setDealtDmg(true);
+                    PlayerStats.setHealth(PlayerStats.getHealth() - 20);
+                }
+            }
+            else if (!PlayerStats.getInvincible()){
+                PlayerStats.setDealtDmg(true);
+                PlayerStats.setHealth(PlayerStats.getHealth() - 20);
             }
         }
     }

@@ -77,13 +77,21 @@ public class Player : MonoBehaviour {
         return dir;
     }
     void OnCollisionEnter2D(Collision2D collision) {
+        Flame flame_coll = collision.gameObject.GetComponent<Flame>();
         if (PlayerStats.getDealtDmg() && !attacking && !PlayerStats.getInvincible()) {
-            PlayerStats.setInvincible(true);
+            if (flame_coll == null)
+            {
+                PlayerStats.setInvincible(true);
+            }
             health = PlayerStats.getHealth();
             PlayerStats.setDealtDmg(false);
-            StartCoroutine(IFrames(0.75f));
+            if (flame_coll == null)
+            {
+                StartCoroutine(IFrames(0.75f));
+            }
+
         }
-        Debug.Log(PlayerStats.getHealth());
+        //Debug.Log(PlayerStats.getHealth());
     }
     void die(){
         Debug.Log("Dead");
@@ -126,7 +134,7 @@ public class Player : MonoBehaviour {
             }
             for (i = 4; i < 4; i++){
                 if (attack[i]){
-                    StartCoroutine(Attack(2));
+                    StartCoroutine(Attack(0.1f));
                     break;
                 }
             }

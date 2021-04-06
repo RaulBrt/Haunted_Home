@@ -176,7 +176,7 @@ public class Vacuum : MonoBehaviour{
             vac_pos += rush_dir * 0.1f;
             vac_rig.MovePosition(vac_pos);
         }
-        else if(action > 9960 && !rushing && Time.time < 5){
+        else if(action > 9960 && !rushing && Time.time < 1){
             Coff();
             coffing = false;
         }

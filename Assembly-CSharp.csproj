@@ -63,6 +63,7 @@
      <Compile Include="Assets\Actors\Fases\Scripts\Camera.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\DeathScreen.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\KitchenExit.cs" />
+     <Compile Include="Assets\Actors\Fases\Scripts\MainHall.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\Stairs.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\StorageExit.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\Wall.cs" />

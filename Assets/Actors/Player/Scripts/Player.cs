@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     bool[] key = new bool[5] { false, false, false, false, false };
     bool[] attack = new bool[4] { false, false, false, false };
     public bool attacking;
-    int health,i;
+    int health,i,lastPos;
 
     IEnumerator Attack(float tempo){
         yield return new WaitForSeconds(tempo);
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour {
         health = PlayerStats.getHealth();
         attacking = false;
         PlayerStats.setInvincible(false);
-
+        lastPos = 0;
     }
     void Update() {
         pos.x = player_rig.position.x;
@@ -134,6 +134,7 @@ public class Player : MonoBehaviour {
             }
             for (i = 4; i < 4; i++){
                 if (attack[i]){
+                    lastPos = getAttackDir();
                     StartCoroutine(Attack(0.1f));
                     break;
                 }
@@ -156,6 +157,14 @@ public class Player : MonoBehaviour {
                 pos.x += passo * Time.deltaTime;
                 key[3] = true;
             }
+            for (i = 4; i < 4; i++)
+            {
+                if (key[i])
+                {
+                    lastPos = getDir();
+                    break;
+                }
+            }
         }
         player_rig.MovePosition(pos);
         anim.SetBool("Up", key[0]);
@@ -166,6 +175,7 @@ public class Player : MonoBehaviour {
         anim.SetBool("ADown", attack[2]);
         anim.SetBool("ALeft", attack[1]);
         anim.SetBool("ARight", attack[3]);
+        anim.SetInteger("LastPos", lastPos);
         if (PlayerStats.getHealth() <= 0){
             die();
         }

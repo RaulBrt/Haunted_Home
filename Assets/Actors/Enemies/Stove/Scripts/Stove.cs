@@ -88,6 +88,7 @@ public class Stove : MonoBehaviour{
         if (health <= 0)
         {
             PlayerStats.setDefeated(1, true);
+            PlayerStats.saveGame();
             gameObject.SetActive(false);
         }
         Debug.Log(health);

@@ -182,6 +182,7 @@ public class Vacuum : MonoBehaviour{
         }
         if(health < 0){
             PlayerStats.setDefeated(0, true);
+            PlayerStats.saveGame();
             gameObject.SetActive(false);
         }
     }

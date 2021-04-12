@@ -15,6 +15,7 @@ public class StorageExit : MonoBehaviour{
     void Update(){
         if (Hit && PlayerStats.getDefeated(0)){
             Debug.Log("Next Level\n");
+            PlayerStats.saveGame();
             SceneManager.LoadScene(NextLevel);
         }
     }

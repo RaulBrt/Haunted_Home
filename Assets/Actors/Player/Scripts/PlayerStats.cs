@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,25 @@ public static class PlayerStats{
     public static bool getInvincible()
     {
         return Invincible;
+    }
+    public static void saveGame(){
+        string[] dados = new string[] { health.ToString(), DefeatedBosses[0].ToString(), DefeatedBosses[1].ToString() };
+        File.WriteAllLines("save.txt", dados);
+    }
+    public static void loadGame(){
+        string[] dados = new string[] { };
+        dados = File.ReadAllLines("save.txt");
+        health = int.Parse(dados[0]);
+        for(i = 1; i < 3; i++){
+            if (dados[i].Equals("True")){
+                DefeatedBosses[i - 1] = true;
+            }
+            else if (dados[i].Equals("False"))
+            {
+                DefeatedBosses[i - 1] = false;
+            }
+
+        }
     }
     private static void Start(){
         for(i = 0; i < 2; i++){

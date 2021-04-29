@@ -17,7 +17,7 @@ public class Stove : MonoBehaviour{
         coff = true;
         anim.SetBool("Coff", coff);
         yield return new WaitForSeconds(time);
-        Instantiate(Fire, new Vector3(0, 7.25f, 0), Quaternion.identity);
+        Instantiate(Fire, new Vector3(0, 6, 0), Quaternion.identity);
     }
     IEnumerator Inhale(){
         Debug.Log("Inhale");
@@ -68,7 +68,7 @@ public class Stove : MonoBehaviour{
     {
         coff = false;
         action = UnityEngine.Random.Range(0, 10000);
-        if (action >= 9800 && Time.time > 3)
+        if (action >= 9900 && Time.time > 3)
         {
             StartCoroutine(Shoot(0.2f));
         }
@@ -76,13 +76,13 @@ public class Stove : MonoBehaviour{
             clock = Time.time;
             marked = true;
         }
-        if (marked && Time.time - clock >= 1 && !inhaling){
+        if (marked && Time.time - clock >= 2 && !inhaling){
             inhaling = true;
             StartCoroutine(Inhale());
         }
         if (blow){
             for(i = 0; i < 20; i++){
-                Instantiate(Flame, new Vector3(UnityEngine.Random.Range(-0.5f,0.5f), UnityEngine.Random.Range(6.75f, 7.75f) , 0), Quaternion.identity);
+                Instantiate(Flame, new Vector3(UnityEngine.Random.Range(-0.5f,0.5f), UnityEngine.Random.Range(5.8f, 6.8f) , 0), Quaternion.identity);
             }
         }
         if (health <= 0)

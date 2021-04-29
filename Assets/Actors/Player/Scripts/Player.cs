@@ -166,6 +166,7 @@ public class Player : MonoBehaviour {
                 }
             }
         }
+        Debug.Log(PlayerStats.getHealth());
         player_rig.MovePosition(pos);
         anim.SetBool("Up", key[0]);
         anim.SetBool("Down", key[2]);

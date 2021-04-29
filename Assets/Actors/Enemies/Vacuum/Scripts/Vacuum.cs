@@ -13,8 +13,14 @@ public class Vacuum : MonoBehaviour{
     public Animator vac_anim;
     [SerializeField] float vac_speed;
     int action,health;
-    bool coffing, rushing;
+    bool coffing, rushing, invincible;
     // public double angle;
+    IEnumerator IFrames(float tempo)
+    {
+        invincible = true;
+        yield return new WaitForSeconds(tempo);
+        invincible = false;
+    }
     IEnumerator delay(float seconds){
         yield return new WaitForSeconds(seconds);
     }
@@ -129,17 +135,20 @@ public class Vacuum : MonoBehaviour{
         Player player_coll = collision.gameObject.GetComponent<Player>();
         if(player_coll != null){
             if (vac_play.attacking){
-                if (checkDamage()){
+                if (checkDamage() && !invincible){
+                    Debug.Log(health);
                     health -= 5;
+                    StartCoroutine(IFrames(0.1f));
                 }
-                else if (!PlayerStats.getInvincible()) { 
+                else if (!PlayerStats.getInvincible() && !vac_play.attacking) { 
                     PlayerStats.setDealtDmg(true);
-                    PlayerStats.setHealth(PlayerStats.getHealth() - 20);
+                    PlayerStats.setHealth(PlayerStats.getHealth() - 10);
                 }
             }
-            else if (!PlayerStats.getInvincible()){
+            else if (!PlayerStats.getInvincible() && !vac_play.attacking)
+            {
                 PlayerStats.setDealtDmg(true);
-                PlayerStats.setHealth(PlayerStats.getHealth() - 20);
+                PlayerStats.setHealth(PlayerStats.getHealth() - 10);
             }
         }
     }
@@ -157,7 +166,7 @@ public class Vacuum : MonoBehaviour{
         vac_speed = 2;
         coffing = false;
         rushing = false;
-        health = 10;
+        health = 100;
         StartCoroutine(delay(1.5f));
     }
 
@@ -166,17 +175,17 @@ public class Vacuum : MonoBehaviour{
         vac_rig.mass = 1;
         action = Random.Range(0, 10000);
         vac_anim.SetInteger("Walking Angle", getWalkingDir(getWalkingAngle(getDir())));
-        if (action <= 9920 && !coffing && !rushing){
+        if (action <= 9900 && !coffing && !rushing){
             Walk(vac_speed);
         }
-        else if ((action > 9920 && action <= 9960 && !coffing) || rushing) {
+        else if ((action > 9900 && action <= 9950 && !coffing) || rushing) {
             if (!rushing){
                 StartCoroutine(Rush(1.5f));
             }
-            vac_pos += rush_dir * 0.1f;
+            vac_pos += rush_dir * 0.25f;
             vac_rig.MovePosition(vac_pos);
         }
-        else if(action > 9960 && !rushing && Time.time < 1){
+        else if(action > 9950 && !rushing && Time.time < 1){
             Coff();
             coffing = false;
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 public static class PlayerStats{
     static int i;
     static int health = 100;
-    static bool[] DefeatedBosses = new bool[2];
+    static bool[] DefeatedBosses = new bool[3];
     static bool DealtDmg, Invincible;
     public static int getHealth() {
         return health;
@@ -35,14 +35,14 @@ public static class PlayerStats{
         return Invincible;
     }
     public static void saveGame(){
-        string[] dados = new string[] { health.ToString(), DefeatedBosses[0].ToString(), DefeatedBosses[1].ToString() };
+        string[] dados = new string[] { health.ToString(), DefeatedBosses[0].ToString(), DefeatedBosses[1].ToString(), DefeatedBosses[2].ToString() };
         File.WriteAllLines("save.txt", dados);
     }
     public static void loadGame(){
         string[] dados = new string[] { };
         dados = File.ReadAllLines("save.txt");
         health = int.Parse(dados[0]);
-        for(i = 1; i < 3; i++){
+        for(i = 1; i < 4; i++){
             if (dados[i].Equals("True")){
                 DefeatedBosses[i - 1] = true;
             }
@@ -54,7 +54,7 @@ public static class PlayerStats{
         }
     }
     private static void Start(){
-        for(i = 0; i < 2; i++){
+        for(i = 0; i < 3; i++){
             DefeatedBosses[i] = false;
         }
         DealtDmg = false;

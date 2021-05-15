@@ -5,10 +5,13 @@ using UnityEngine;
 public class Book : MonoBehaviour
 {
     Rigidbody2D rig;
+    SpriteRenderer spriteRenderer;
+    PolygonCollider2D col;
+    List<Vector2> physicsShape = new List<Vector2>();
+    public Animator anim;
     [SerializeField] float speed;
     float angle;
     Player play;
-    Collider2D coll;
     Vector2 pos, dir;
     bool og;
     int action;
@@ -76,10 +79,12 @@ public class Book : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        angle = Random.Range(0, 360);
-        angle *= Mathf.PI / 180;
         Player player_coll = collision.gameObject.GetComponent<Player>();
         Book book_coll = collision.gameObject.GetComponent<Book>();
+        BottomWall bw = collision.gameObject.GetComponent<BottomWall>();
+        TopWall tw = collision.gameObject.GetComponent<TopWall>();
+        LeftWall lw = collision.gameObject.GetComponent<LeftWall>();
+        RightWall rw = collision.gameObject.GetComponent<RightWall>();
         if (player_coll != null)
         {
             if (checkDamage() && !og)
@@ -92,74 +97,81 @@ public class Book : MonoBehaviour
                 PlayerStats.setHealth(PlayerStats.getHealth() - 2);
             }
         }
-        else if (book_coll == null)
+        else if(book_coll != null)
         {
-            if (collision.contacts[0].normal.y < -0.5)
+            Physics2D.IgnoreCollision(book_coll.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+        else
+        {
+            if (lw != null)
             {
-                angle = Random.Range(225, 315);
+                angle = 0;
             }
-            else if (collision.contacts[0].normal.y > 0.5)
+            else if (rw != null)
             {
-                angle = Random.Range(45, 135);
+                angle = 180;
             }
-            else
+            else if (tw != null)
             {
-                if (collision.contacts[0].normal.x < -0.5)
-                {
-                    angle = Random.Range(135, 225);
-                }
-                else if (collision.contacts[0].normal.x > 0.5)
-                {
-                    angle = Random.Range(0, 10);
-                    if (angle < 5)
-                    {
-                        angle = Random.Range(0, 45);
-                    }
-                    else
-                    {
-                        angle = Random.Range(315, 360);
-                    }
-                }
-
+                angle = 270;
+            }
+            else if (bw != null)
+            {
+                angle = 90;
             }
         }
         angle *= Mathf.PI / 180;
     }
     void Start()
     {
+        anim = GetComponent<Animator>();
         book = FindObjectsOfType<Book>();
-        /*if (book.Length <= 1)
+        if (book.Length <= 1)
         {
             og = true;
             GetComponent<Rigidbody2D>().MovePosition(new Vector2(-10000, -10000));
         }
         else
-        {*/
+        {
             og = false;
             rig = GetComponent<Rigidbody2D>();
+            col = GetComponent<PolygonCollider2D>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
             pos = rig.position;
             play = FindObjectOfType<Player>();
             angle = Random.Range(0, 360);
             angle *= Mathf.PI / 180;
             if (speed == 0)
             {
-                speed = 0.2f;
+                speed = 0.09f;
             }
-        Debug.Log(angle);
-        //}
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        pos.x += Mathf.Cos(angle) * speed;
-        pos.y += Mathf.Sin(angle) * speed;
-        action = Random.Range(0, 100);
-        if(action >= 98){
-            angle = Random.Range(0, 360);
-            angle *= Mathf.PI / 180;
+        if (!og)
+        {
+            pos.x += Mathf.Cos(angle) * speed;
+            pos.y += Mathf.Sin(angle) * speed;
+            action = Random.Range(0, 100);
+            if (action >= 98)
+            {
+                angle = Random.Range(0, 360);
+                angle *= Mathf.PI / 180;
+            }
+            Debug.Log(angle * (180 / Mathf.PI));
+            rig.MovePosition(pos);
         }
-        rig.MovePosition(pos);
-        Debug.Log(angle);
+        anim.SetFloat("Tan", Mathf.Tan(angle));
+    }
+    void LateUpdate()
+    {
+        if (!og)
+        {
+            spriteRenderer.sprite.GetPhysicsShape(0, physicsShape);
+            col.SetPath(0, physicsShape);
+        }
     }
 }

@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\Book.cs" />
+     <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\Bookshelf.cs" />
      <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Fire.cs" />
      <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Flame.cs" />
      <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Stove.cs" />
@@ -64,6 +65,10 @@
      <Compile Include="Assets\Actors\Fases\Scripts\Camera.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\DeathScreen.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\KitchenExit.cs" />
+     <Compile Include="Assets\Actors\Fases\Scripts\Library\BottomWall.cs" />
+     <Compile Include="Assets\Actors\Fases\Scripts\Library\LeftWall.cs" />
+     <Compile Include="Assets\Actors\Fases\Scripts\Library\RightWall.cs" />
+     <Compile Include="Assets\Actors\Fases\Scripts\Library\TopWall.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\MainHall.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\Stairs.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\StorageExit.cs" />

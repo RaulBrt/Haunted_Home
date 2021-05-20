@@ -9,11 +9,34 @@ public class Bookshelf : MonoBehaviour
     SpriteRenderer spriteRenderer;
     List<Vector2> physicsShape = new List<Vector2>();
     Player play;
+    public Animator anim;
     int angle, lookAngle, angleDiff;
     Vector2 dir,pos;
     int action, health;
     private Book[] book;
     public GameObject bk;
+    int getDir(float angle)
+    {
+        int dir = 0;
+        if (angle >= 67 && angle < 112)
+            dir = 1;
+        else if (angle >= 22 && angle < 67)
+            dir = 2;
+        else if ((angle >= 0 && angle < 22) || (angle >= 337 && angle <= 360))
+            dir = 3;
+        else if (angle >= 292 && angle < 337)
+            dir = 4;
+        else if (angle >= 247 && angle < 292)
+            dir = 5;
+        else if (angle >= 202 && angle < 247)
+            dir = 6;
+        else if (angle >= 157 && angle < 202)
+            dir = 7;
+        else if (angle >= 112 && angle < 157)
+            dir = 8;
+
+        return dir;
+    }
     int getAngle(Vector2 origin, Vector2 dest)
     {
         Vector2 direcao = new Vector2(dest.x - origin.x, dest.y - origin.y);
@@ -119,13 +142,14 @@ public class Bookshelf : MonoBehaviour
             }
         }
         Debug.Log("Angle: " + angle + " Look Angle: " + lookAngle);
+
         if (health <= 0)
         {
             PlayerStats.setDefeated(2, true);
             PlayerStats.saveGame();
             gameObject.SetActive(false);
         }
-
+        anim.SetInteger("Dir", getDir(angle));
     }
     void LateUpdate()
     {

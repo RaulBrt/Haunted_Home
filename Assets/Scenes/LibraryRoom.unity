@@ -988,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11257c62e17f7b4f859b1aa9ef15791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1685499479}
   bk: {fileID: 817073100}
 --- !u!95 &1685499479
 Animator:
@@ -999,7 +1000,7 @@ Animator:
   m_GameObject: {fileID: 1685499473}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fae60a18f2d80fe40a41a1b136d98a1f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

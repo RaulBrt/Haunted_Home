@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,11 +11,21 @@ public class Bookshelf : MonoBehaviour
     List<Vector2> physicsShape = new List<Vector2>();
     Player play;
     public Animator anim;
-    int angle, lookAngle, angleDiff;
+    [SerializeField] int passo;
+    int angle, lookAngle, action, health;
+    bool isAttack,coolDown,mark,mark2;
+    double clock,clock2,clock3;
     Vector2 dir,pos;
-    int action, health;
     private Book[] book;
     public GameObject bk;
+    IEnumerator delay(float tempo)
+    {
+        yield return new WaitForSeconds(tempo);
+    }
+    public int getHealth()
+    {
+        return health;
+    }
     int getDir(float angle)
     {
         int dir = 0;
@@ -90,6 +101,24 @@ public class Bookshelf : MonoBehaviour
         }
         return damaged;
     }
+    private double getDistance()
+    {
+        double x, y, h;
+        x = Math.Abs(play.GetComponent<Rigidbody2D>().position.x - transform.position.x);
+        y = Math.Abs(play.GetComponent<Rigidbody2D>().position.y - transform.position.y);
+        x *= x;
+        y *= y;
+        h = Math.Sqrt(x + y);
+        return h;
+    }
+    private bool attack()
+    {
+        bool isAttack = false;
+        if(getDir(lookAngle) == getDir(angle) && getDistance() < 4){
+            isAttack = true;
+        }
+        return isAttack;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Player player_coll = collision.gameObject.GetComponent<Player>();
@@ -97,8 +126,20 @@ public class Bookshelf : MonoBehaviour
         {
             if (checkDamage() && play.attacking)
             {
-                health -= 10;
+                health -= 15;
             }
+            if(mark2)
+            {
+                PlayerStats.setDealtDmg(true);
+                PlayerStats.setHealth(PlayerStats.getHealth() - 10);
+            }
+        }
+    }
+    void Awake()
+    {
+        if (PlayerStats.getDefeated(2))
+        {
+            gameObject.SetActive(false);
         }
     }
     void Start()
@@ -110,6 +151,11 @@ public class Bookshelf : MonoBehaviour
         pos = rig.position;
         lookAngle = 270;
         health = 100;
+        passo = 2;
+        isAttack = false;
+        mark = false;
+        mark2 = false;
+        coolDown = false;
     }
 
     // Update is called once per frame
@@ -117,18 +163,33 @@ public class Bookshelf : MonoBehaviour
     {
         book = FindObjectsOfType<Book>();
         angle = getAngle(pos, play.GetComponent<Rigidbody2D>().position);
-        if (Mathf.Tan(angle * (Mathf.PI /180)) > Mathf.Tan(lookAngle * (Mathf.PI / 180))){
-            lookAngle++;
-        }
-        else /*if (Mathf.Tan(angle * (Mathf.PI / 180)) < Mathf.Tan(lookAngle * (Mathf.PI / 180)))*/
+        if (angle > lookAngle)
         {
-            lookAngle--;
+            if (Math.Abs(angle - lookAngle) > lookAngle + (360 - angle))
+            {
+                lookAngle-=passo;
+            }
+            else if (Math.Abs(angle - lookAngle) < lookAngle + (360 - angle))
+            {
+                lookAngle+=passo;
+            }
         }
-        if (lookAngle > 360)
+        else if (angle < lookAngle)
         {
-            lookAngle-=360;
+            if (Math.Abs(angle - lookAngle) > angle + (360 - lookAngle))
+            {
+                lookAngle+=passo;
+            }
+            else if (Math.Abs(angle - lookAngle) < angle + (360 - lookAngle))
+            {
+                lookAngle-=passo;
+            }
         }
-        if (lookAngle < 0)
+        if(lookAngle >= 360)
+        {
+            lookAngle -= 360;
+        }
+        if(lookAngle < 0)
         {
             lookAngle += 360;
         }
@@ -138,10 +199,9 @@ public class Bookshelf : MonoBehaviour
             action = UnityEngine.Random.Range(0, 10000);
             if(action > 9800)
             {
-                Instantiate(bk, new Vector3(UnityEngine.Random.Range(-10,10), UnityEngine.Random.Range(-10, 10), 0), Quaternion.identity);
+                Instantiate(bk, new Vector3(UnityEngine.Random.Range(-9,4.5f), UnityEngine.Random.Range(-5, 4), 0), Quaternion.identity);
             }
         }
-        Debug.Log("Angle: " + angle + " Look Angle: " + lookAngle);
 
         if (health <= 0)
         {
@@ -149,7 +209,44 @@ public class Bookshelf : MonoBehaviour
             PlayerStats.saveGame();
             gameObject.SetActive(false);
         }
-        anim.SetInteger("Dir", getDir(angle));
+        anim.SetInteger("Dir", getDir(lookAngle));
+        isAttack = attack();
+        if (coolDown)
+        {
+            anim.SetBool("attack", false);
+            isAttack = false;
+        }
+       else if ((isAttack || mark) && !coolDown)
+        {
+            if (!mark)
+            {
+                mark = true;
+                clock = Time.time;
+            }
+            if (mark && Time.time - clock > 1)
+            {
+                anim.SetBool("attack", true);
+                mark = false;
+                mark2 = true;
+                clock2 = Time.time;
+            }
+        }
+        if(mark2 && Time.time-clock2 > 1)
+        {
+            Debug.Log("Check1");
+            clock = Time.time;
+            anim.SetBool("attack", false);
+            mark2 = false;
+            coolDown = true;
+            clock3 = Time.time;
+        }
+        if (coolDown && Time.time - clock3 > 5)
+        {
+            Debug.Log("Check2");
+            anim.SetBool("attack", false);
+            coolDown = false;
+        }
+        
     }
     void LateUpdate()
     {

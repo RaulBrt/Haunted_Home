@@ -109,6 +109,7 @@ public class Player : MonoBehaviour {
         lastPos = 0;
     }
     void Update() {
+        Debug.Log(PlayerStats.getHealth());
         pos.x = player_rig.position.x;
         pos.y = player_rig.position.y;
         for(i = 0; i < 5; i++){
@@ -166,7 +167,6 @@ public class Player : MonoBehaviour {
                 }
             }
         }
-        Debug.Log(PlayerStats.getHealth());
         player_rig.MovePosition(pos);
         anim.SetBool("Up", key[0]);
         anim.SetBool("Down", key[2]);

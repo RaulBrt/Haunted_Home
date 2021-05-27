@@ -16,6 +16,7 @@ public class Book : MonoBehaviour
     bool og;
     int action;
     private Book[] book;
+    private Bookshelf BS;
     Vector2 getDir()
     {
         Vector2 dir, playerPos;
@@ -124,8 +125,13 @@ public class Book : MonoBehaviour
     }
     void Start()
     {
+        if (PlayerStats.getDefeated(2))
+        {
+            
+        }
         anim = GetComponent<Animator>();
         book = FindObjectsOfType<Book>();
+        BS = FindObjectOfType<Bookshelf>();
         if (book.Length <= 1)
         {
             og = true;
@@ -151,6 +157,10 @@ public class Book : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(BS.getHealth() <= 0 || !BS.enabled)
+        {
+            Object.Destroy(gameObject);
+        }
         if (!og)
         {
             pos.x += Mathf.Cos(angle) * speed;
@@ -161,7 +171,6 @@ public class Book : MonoBehaviour
                 angle = Random.Range(0, 360);
                 angle *= Mathf.PI / 180;
             }
-            Debug.Log(angle * (180 / Mathf.PI));
             rig.MovePosition(pos);
         }
         anim.SetFloat("Tan", Mathf.Tan(angle));

@@ -69,6 +69,7 @@
      <Compile Include="Assets\Actors\Fases\Scripts\Library\LeftWall.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\Library\RightWall.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\Library\TopWall.cs" />
+     <Compile Include="Assets\Actors\Fases\Scripts\LibraryExit.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\MainHall.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\Stairs.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\StorageExit.cs" />

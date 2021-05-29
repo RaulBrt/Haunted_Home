@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class PlayerStats{
     static int i;
-    static int health = 100;
+    static int health = 120;
     static bool[] DefeatedBosses = new bool[3];
     static bool DealtDmg, Invincible;
     public static int getHealth() {

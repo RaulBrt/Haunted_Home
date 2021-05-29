@@ -11,7 +11,7 @@ public class Stairs : MonoBehaviour{
     }
     void Update(){
         if (Hit){
-            PlayerStats.setHealth(100);
+            PlayerStats.setHealth(120);
             Debug.Log("Next Level\n");
             SceneManager.LoadScene(LevelName);
         }

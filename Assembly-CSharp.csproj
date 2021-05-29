@@ -55,6 +55,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Actors\BarraDeVida\Script\BookshelfHB.cs" />
+     <Compile Include="Assets\Actors\BarraDeVida\Script\Sonia.cs" />
+     <Compile Include="Assets\Actors\BarraDeVida\Script\StoveHB.cs" />
+     <Compile Include="Assets\Actors\BarraDeVida\Script\VacuumHB.cs" />
      <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\Book.cs" />
      <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\Bookshelf.cs" />
      <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Fire.cs" />

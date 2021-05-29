@@ -28,6 +28,10 @@ public class Stove : MonoBehaviour{
         inhaling = false;
         marked = false;
     }
+    public int getHealth()
+    {
+        return health;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Player player_coll = collision.gameObject.GetComponent<Player>();
@@ -56,7 +60,7 @@ public class Stove : MonoBehaviour{
     }
     void Start()
     {
-        health = 100;
+        health = 120;
         play = FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
         marked = false;

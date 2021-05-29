@@ -166,7 +166,7 @@ public class Vacuum : MonoBehaviour{
         vac_speed = 2;
         coffing = false;
         rushing = false;
-        health = 100;
+        health = 120;
         StartCoroutine(delay(1.5f));
     }
 

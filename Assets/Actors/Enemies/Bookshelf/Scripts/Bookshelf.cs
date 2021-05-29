@@ -150,7 +150,7 @@ public class Bookshelf : MonoBehaviour
         play = FindObjectOfType<Player>();
         pos = rig.position;
         lookAngle = 270;
-        health = 100;
+        health = 120;
         passo = 2;
         isAttack = false;
         mark = false;

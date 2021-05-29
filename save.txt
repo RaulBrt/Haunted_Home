@@ -1,4 +1,4 @@
-100
-True
-True
+120
+False
+False
 True

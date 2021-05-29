@@ -44,7 +44,7 @@ public class Flame : MonoBehaviour
             rig = GetComponent<Rigidbody2D>();
             play = FindObjectOfType<Player>();
             startPos = rig.position;
-            angle = Random.Range(200, 340);
+            angle = Random.Range(175, 355);
             angle *= Mathf.PI / 180;
             if (speed == 0)
             {

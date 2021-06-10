@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
     public Animator anim;
     bool[] key = new bool[5] { false, false, false, false, false };
     bool[] attack = new bool[4] { false, false, false, false };
-    public bool attacking;
+    public bool attacking, walking;
     int health,i,lastPos;
 
     IEnumerator Attack(float tempo){
@@ -105,11 +105,12 @@ public class Player : MonoBehaviour {
         anim = GetComponent<Animator>();
         health = PlayerStats.getHealth();
         attacking = false;
+        walking = false;
         PlayerStats.setInvincible(false);
         lastPos = 0;
     }
     void Update() {
-        Debug.Log(PlayerStats.getHealth());
+        //Debug.Log(PlayerStats.getHealth());
         pos.x = player_rig.position.x;
         pos.y = player_rig.position.y;
         for(i = 0; i < 5; i++){
@@ -135,7 +136,6 @@ public class Player : MonoBehaviour {
             }
             for (i = 4; i < 4; i++){
                 if (attack[i]){
-                    lastPos = getAttackDir();
                     StartCoroutine(Attack(0.1f));
                     break;
                 }
@@ -158,25 +158,25 @@ public class Player : MonoBehaviour {
                 pos.x += passo * Time.deltaTime;
                 key[3] = true;
             }
-            for (i = 4; i < 4; i++)
+            for (i = 0; i < 4; i++)
             {
                 if (key[i])
                 {
                     lastPos = getDir();
+                    walking = true;
                     break;
+                }
+                else
+                {
+                    walking = false;
                 }
             }
         }
         player_rig.MovePosition(pos);
-        anim.SetBool("Up", key[0]);
-        anim.SetBool("Down", key[2]);
-        anim.SetBool("Left", key[1]);
-        anim.SetBool("Right", key[3]);
-        anim.SetBool("AUp", attack[0]); 
-        anim.SetBool("ADown", attack[2]);
-        anim.SetBool("ALeft", attack[1]);
-        anim.SetBool("ARight", attack[3]);
+        anim.SetInteger("Dir", getDir());
         anim.SetInteger("LastPos", lastPos);
+        anim.SetBool("Attack", attacking);
+        anim.SetBool("Walk", walking);
         if (PlayerStats.getHealth() <= 0){
             die();
         }

@@ -139,7 +139,8 @@ public class Bookshelf : MonoBehaviour
     {
         if (PlayerStats.getDefeated(2))
         {
-            gameObject.SetActive(false);
+            UnityEngine.Object.Destroy(gameObject);
+            health = 0;
         }
     }
     void Start()
@@ -206,8 +207,7 @@ public class Bookshelf : MonoBehaviour
         if (health <= 0)
         {
             PlayerStats.setDefeated(2, true);
-            PlayerStats.saveGame();
-            gameObject.SetActive(false);
+            UnityEngine.Object.Destroy(gameObject);
         }
         anim.SetInteger("Dir", getDir(lookAngle));
         isAttack = attack();

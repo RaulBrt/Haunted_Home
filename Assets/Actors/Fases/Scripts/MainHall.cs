@@ -7,6 +7,6 @@ public class MainHall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       PlayerStats.loadGame();
+       //PlayerStats.loadGame();
     }
 }

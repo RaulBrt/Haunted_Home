@@ -154,7 +154,8 @@ public class Vacuum : MonoBehaviour{
     }
     void Awake(){
         if (PlayerStats.getDefeated(0) == true){
-            gameObject.SetActive(false);
+            UnityEngine.Object.Destroy(gameObject);
+            health = 0;
         }
     }
     void Start(){
@@ -191,7 +192,7 @@ public class Vacuum : MonoBehaviour{
         }
         if(health < 0){
             PlayerStats.setDefeated(0, true);
-            PlayerStats.saveGame();
+            //PlayerStats.saveGame();
             gameObject.SetActive(false);
         }
     }

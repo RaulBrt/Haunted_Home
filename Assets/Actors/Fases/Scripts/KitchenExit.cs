@@ -19,7 +19,7 @@ public class KitchenExit : MonoBehaviour
         if (Hit && PlayerStats.getDefeated(1))
         {
             Debug.Log("Next Level\n");
-            PlayerStats.saveGame();
+            //PlayerStats.saveGame();
             SceneManager.LoadScene(NextLevel);
         }
     }

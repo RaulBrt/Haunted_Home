@@ -72,7 +72,7 @@ public class Stove : MonoBehaviour{
     {
         coff = false;
         action = UnityEngine.Random.Range(0, 10000);
-        if (action >= 9900 && Time.time > 3)
+        if (action >= 9800 && Time.time > 3)
         {
             StartCoroutine(Shoot(0.2f));
         }
@@ -92,7 +92,7 @@ public class Stove : MonoBehaviour{
         if (health <= 0)
         {
             PlayerStats.setDefeated(1, true);
-            PlayerStats.saveGame();
+            //PlayerStats.saveGame();
             gameObject.SetActive(false);
         }
         Debug.Log(health);

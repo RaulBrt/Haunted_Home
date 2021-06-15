@@ -30,27 +30,46 @@ public class Player : MonoBehaviour {
     }
     public int getAttackDir() {
         int dir = 0;
-        if (attack[0]){
-            if (attack[1])
-                dir = 8;
-            else if (attack[3])
-                dir = 2;
-            else
-                dir = 1;
+        int i;
+        bool btn = false;
+        for(i = 0; i < 4; i++)
+        {
+            if (attack[i])
+            {
+                btn = true;
+                break;
+            }
         }
-        else if (attack[2]){
-            if (attack[1])
-                dir = 6;
+        if (btn){
+            if (attack[0])
+            {
+                if (attack[1])
+                    dir = 8;
+                else if (attack[3])
+                    dir = 2;
+                else
+                    dir = 1;
+            }
+            else if (attack[2])
+            {
+                if (attack[1])
+                    dir = 6;
+                else if (attack[3])
+                    dir = 4;
+                else
+                    dir = 5;
+            }
+            else if (attack[1])
+                dir = 7;
             else if (attack[3])
-                dir = 4;
-            else
-                dir = 5;
+                dir = 3;
+            return dir;
         }
-        else if (attack[1])
-            dir = 7;
-        else if (attack[3])
-            dir = 3;
-        return dir;
+        else
+        {
+            return lastPos;
+        }
+        
     }
     int getDir(){
         int dir = 0;
@@ -134,7 +153,7 @@ public class Player : MonoBehaviour {
             else if (Input.GetKey(KeyCode.D)){
                 attack[3] = true;
             }
-            for (i = 4; i < 4; i++){
+            for (i = 0; i < 4; i++){
                 if (attack[i]){
                     StartCoroutine(Attack(0.1f));
                     break;
@@ -173,10 +192,19 @@ public class Player : MonoBehaviour {
             }
         }
         player_rig.MovePosition(pos);
-        anim.SetInteger("Dir", getDir());
+        anim.SetInteger("AtkDir", getAttackDir());
+        if (walking)
+        {
+            anim.SetInteger("Dir", getDir());
+        }
+        else
+        {
+            anim.SetInteger("Dir", 0);
+        }
         anim.SetInteger("LastPos", lastPos);
         anim.SetBool("Attack", attacking);
         anim.SetBool("Walk", walking);
+        Debug.Log("ATKdir: " + getAttackDir() + ",Walking: " + walking + ",Attacking: " + attacking);
         if (PlayerStats.getHealth() <= 0){
             die();
         }

@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VideoPlayer: {fileID: 1868026655}
-  SceneName: Main Hall
+  SceneName: MainMenu
 --- !u!4 &1259018927
 Transform:
   m_ObjectHideFlags: 0

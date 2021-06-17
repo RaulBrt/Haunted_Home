@@ -81,6 +81,8 @@
      <Compile Include="Assets\Actors\Player\Scripts\Player.cs" />
      <Compile Include="Assets\Actors\Player\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scenes\Cutscenes\LoadSceneAfterVideoEnded.cs" />
+     <Compile Include="Assets\Scenes\Menus\Play.cs" />
+     <Compile Include="Assets\Scenes\Menus\Quit.cs" />
  <Reference Include="UnityEngine">
  <HintPath>F:/Program Files/Unity/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

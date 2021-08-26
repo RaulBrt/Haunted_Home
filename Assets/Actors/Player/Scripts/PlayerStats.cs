@@ -31,6 +31,7 @@ public static class PlayerStats{
     {
         Invincible = inv;
     }
+
     public static bool getInvincible()
     {
         return Invincible;

@@ -95,28 +95,36 @@ public class Vacuum : MonoBehaviour{
     }
     bool checkDamage(){
         bool damaged = false;
-        if(vac_play.getAttackDir() == 1 && getWalkingAngle(getDir()) > 247 && getWalkingAngle(getDir()) <= 292){
+        if (vac_play.getAttackDir() == 1 && getWalkingAngle(getDir()) > 247 && getWalkingAngle(getDir()) <= 292)
+        {
             damaged = true;
         }
-        if (vac_play.getAttackDir() == 2 && getWalkingAngle(getDir()) > 202 && getWalkingAngle(getDir()) <= 247){
+        if (vac_play.getAttackDir() == 2 && getWalkingAngle(getDir()) > 202 && getWalkingAngle(getDir()) <= 247)
+        {
             damaged = true;
         }
-        if (vac_play.getAttackDir() == 3 && getWalkingAngle(getDir()) > 157 && getWalkingAngle(getDir()) <= 202){
+        if (vac_play.getAttackDir() == 3 && getWalkingAngle(getDir()) > 157 && getWalkingAngle(getDir()) <= 202)
+        {
             damaged = true;
         }
-        if (vac_play.getAttackDir() == 4 && getWalkingAngle(getDir()) > 112 && getWalkingAngle(getDir()) <= 157){
+        if (vac_play.getAttackDir() == 4 && getWalkingAngle(getDir()) > 112 && getWalkingAngle(getDir()) <= 157)
+        {
             damaged = true;
         }
-        if (vac_play.getAttackDir() == 5 && getWalkingAngle(getDir()) > 68 && getWalkingAngle(getDir()) <= 112){
+        if (vac_play.getAttackDir() == 5 && getWalkingAngle(getDir()) > 68 && getWalkingAngle(getDir()) <= 112)
+        {
             damaged = true;
         }
-        if (vac_play.getAttackDir() == 6 && getWalkingAngle(getDir()) > 23 && getWalkingAngle(getDir()) <= 68){
+        if (vac_play.getAttackDir() == 6 && getWalkingAngle(getDir()) > 23 && getWalkingAngle(getDir()) <= 68)
+        {
             damaged = true;
         }
-        if (vac_play.getAttackDir() == 7 && (getWalkingAngle(getDir()) > 337 && getWalkingAngle(getDir()) <= 360) || (getWalkingAngle(getDir()) > 0 && getWalkingAngle(getDir()) <= 23)){
+        if (vac_play.getAttackDir() == 7 && (getWalkingAngle(getDir()) > 337 && getWalkingAngle(getDir()) <= 360) || (getWalkingAngle(getDir()) > 0 && getWalkingAngle(getDir()) <= 23))
+        {
             damaged = true;
         }
-        if (vac_play.getAttackDir() == 8 && getWalkingAngle(getDir()) > 292 && getWalkingAngle(getDir()) <= 337){
+        if (vac_play.getAttackDir() == 8 && getWalkingAngle(getDir()) > 292 && getWalkingAngle(getDir()) <= 337)
+        {
             damaged = true;
         }
         return damaged;
@@ -134,19 +142,22 @@ public class Vacuum : MonoBehaviour{
         vac_rig.mass = 999999;
         Player player_coll = collision.gameObject.GetComponent<Player>();
         if(player_coll != null){
-            if (vac_play.attacking){
-                if (checkDamage() && !invincible){
-                    Debug.Log(health);
-                    health -= 5;
+            if (vac_play.attacking || Input.GetKey(KeyCode.Mouse0))
+            {
+                if (checkDamage() )
+                {
+                    //Debug.Log(health);
+                    health -= 10;
                     StartCoroutine(IFrames(0.1f));
                 }
-                else if (!PlayerStats.getInvincible() && !vac_play.attacking) { 
+                else if ((!PlayerStats.getInvincible() && !vac_play.attacking) && !Input.GetKey(KeyCode.Mouse0))  {
                     PlayerStats.setDealtDmg(true);
                     PlayerStats.setHealth(PlayerStats.getHealth() - 10);
                 }
             }
-            else if (!PlayerStats.getInvincible() && !vac_play.attacking)
+            else if ((!PlayerStats.getInvincible() && !vac_play.attacking) && !Input.GetKey(KeyCode.Mouse0))
             {
+                Debug.Log(PlayerStats.getInvincible() + "," + vac_play.attacking);
                 PlayerStats.setDealtDmg(true);
                 PlayerStats.setHealth(PlayerStats.getHealth() - 10);
             }

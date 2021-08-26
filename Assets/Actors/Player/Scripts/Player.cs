@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour {
 
-    [SerializeField] float passo = 10f;
+    [SerializeField] float passo = 25f;
     [SerializeField] string levelName;
     Rigidbody2D player_rig;
     PolygonCollider2D player_coll;
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
     public Animator anim;
     bool[] key = new bool[5] { false, false, false, false, false };
     bool[] attack = new bool[4] { false, false, false, false };
-    public bool attacking, walking;
+    public bool isAttacking,attacking, walking;
     int health,i,lastPos;
 
     IEnumerator Attack(float tempo){
@@ -42,23 +42,9 @@ public class Player : MonoBehaviour {
         }
         if (btn){
             if (attack[0])
-            {
-                if (attack[1])
-                    dir = 8;
-                else if (attack[3])
-                    dir = 2;
-                else
-                    dir = 1;
-            }
+              dir = 1;
             else if (attack[2])
-            {
-                if (attack[1])
-                    dir = 6;
-                else if (attack[3])
-                    dir = 4;
-                else
-                    dir = 5;
-            }
+              dir = 5;
             else if (attack[1])
                 dir = 7;
             else if (attack[3])
@@ -73,42 +59,35 @@ public class Player : MonoBehaviour {
     }
     int getDir(){
         int dir = 0;
-        if (key[0]){
-            if (key[1])
-                dir = 8;
-            else if (key[3])
-                dir = 2;
-            else
-                dir = 1;
-        }
-        else if (key[2]){
-            if (key[1])
-                dir = 6;
-            else if (key[3])
-                dir = 4;
-            else
-                dir = 5;
-        }
+        if (key[0])
+            dir = 1;
+        else if (key[2])
+            dir = 5;
         else if (key[1])
             dir = 7;
         else if (key[3])
             dir = 3;
         return dir;
     }
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision)
+    {
         Flame flame_coll = collision.gameObject.GetComponent<Flame>();
-        if (PlayerStats.getDealtDmg() && !attacking && !PlayerStats.getInvincible()) {
-            if (flame_coll == null)
+        Debug.Log("Attacking: " + attacking + ", Invincible: " + PlayerStats.getInvincible());
+        if (!PlayerStats.getInvincible() && !attacking){ 
+            if (PlayerStats.getDealtDmg() && !attacking && !PlayerStats.getInvincible())
             {
-                PlayerStats.setInvincible(true);
-            }
-            health = PlayerStats.getHealth();
-            PlayerStats.setDealtDmg(false);
-            if (flame_coll == null)
-            {
-                StartCoroutine(IFrames(0.75f));
-            }
+                if (flame_coll == null)
+                {
+                    PlayerStats.setInvincible(true);
+                }
+                health = PlayerStats.getHealth();
+                PlayerStats.setDealtDmg(false);
+                if (flame_coll == null)
+                {
+                    StartCoroutine(IFrames(0.75f));
+                }
 
+            }
         }
         //Debug.Log(PlayerStats.getHealth());
     }
@@ -123,6 +102,7 @@ public class Player : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         health = PlayerStats.getHealth();
+        isAttacking = false;
         attacking = false;
         walking = false;
         PlayerStats.setInvincible(false);
@@ -139,8 +119,10 @@ public class Player : MonoBehaviour {
             attack[i] = false;
         }
         attacking = false;
+        PlayerStats.setInvincible(false);
         if (Input.GetKey(KeyCode.Mouse0) && !attacking){
             attacking = true;
+            PlayerStats.setInvincible(true);
             if (Input.GetKey(KeyCode.W)){
                 attack[0] = true;
             }
@@ -160,20 +142,25 @@ public class Player : MonoBehaviour {
                 }
             }
         }
-        else if (!attacking){
-            if (Input.GetKey(KeyCode.W)){
+        else if (!attacking)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
                 pos.y += passo * Time.deltaTime;
                 key[0] = true;
             }
-            else if (Input.GetKey(KeyCode.S)){
+            else if (Input.GetKey(KeyCode.S))
+            {
                 pos.y -= passo * Time.deltaTime;
                 key[2] = true;
             }
-            if (Input.GetKey(KeyCode.A)){
+            else if (Input.GetKey(KeyCode.A))
+            {
                 pos.x -= passo * Time.deltaTime;
                 key[1] = true;
             }
-            else if (Input.GetKey(KeyCode.D)){
+            else if (Input.GetKey(KeyCode.D))
+            {
                 pos.x += passo * Time.deltaTime;
                 key[3] = true;
             }
@@ -204,9 +191,8 @@ public class Player : MonoBehaviour {
         anim.SetInteger("LastPos", lastPos);
         anim.SetBool("Attack", attacking);
         anim.SetBool("Walk", walking);
-        Debug.Log("ATKdir: " + getAttackDir() + ",Walking: " + walking + ",Attacking: " + attacking);
         if (PlayerStats.getHealth() <= 0){
-            die();
+            //die();
         }
     }
     void LateUpdate(){

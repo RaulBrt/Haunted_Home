@@ -149,7 +149,7 @@ public class Book : MonoBehaviour
             angle *= Mathf.PI / 180;
             if (speed == 0)
             {
-                speed = 0.09f;
+                speed = 0.02f;
             }
         }
     }

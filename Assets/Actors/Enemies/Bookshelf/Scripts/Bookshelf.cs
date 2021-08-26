@@ -124,11 +124,11 @@ public class Bookshelf : MonoBehaviour
         Player player_coll = collision.gameObject.GetComponent<Player>();
         if (player_coll != null)
         {
-            if (checkDamage() && play.attacking)
+            if ((checkDamage() && play.attacking) || Input.GetKey(KeyCode.Mouse0))
             {
                 health -= 15;
             }
-            if(mark2)
+            if(mark2 && !Input.GetKey(KeyCode.Mouse0))
             {
                 PlayerStats.setDealtDmg(true);
                 PlayerStats.setHealth(PlayerStats.getHealth() - 10);

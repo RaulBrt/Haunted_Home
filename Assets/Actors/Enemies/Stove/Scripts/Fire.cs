@@ -10,7 +10,7 @@ public class Fire : MonoBehaviour{
     Vector2 startPos, endPos, dir;
     bool og;
     private Fire[] fire;
-    void OnCollisionEnter2D(Collision2D collision){
+    void OnTriggerEnter2D(Collider2D collision){
         Fire fir = collision.gameObject.GetComponent<Fire>();
         Player player_coll = collision.gameObject.GetComponent<Player>();
         if (!og){

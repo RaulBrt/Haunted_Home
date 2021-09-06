@@ -8,6 +8,7 @@ public static class PlayerStats{
     static int i;
     static int health = 120;
     static bool[] DefeatedBosses = new bool[3];
+    static bool[] Powerup = new bool[1];
     static bool DealtDmg, Invincible;
     public static int getHealth() {
         return health;
@@ -35,6 +36,15 @@ public static class PlayerStats{
     public static bool getInvincible()
     {
         return Invincible;
+    }
+
+    public static void setPowerup(int index, bool valor)
+    {
+        Powerup[index] = valor;
+    }
+    public static bool getPowerup(int index)
+    {
+        return Powerup[index];
     }
     public static void saveGame(){
         Debug.Log("Check2");

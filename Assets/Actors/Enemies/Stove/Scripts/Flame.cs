@@ -12,7 +12,7 @@ public class Flame : MonoBehaviour
     bool og;
     float angle;
     private Flame[] flame;
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         Flame flam = collision.gameObject.GetComponent<Flame>();
         Player player_coll = collision.gameObject.GetComponent<Player>();
@@ -24,7 +24,7 @@ public class Flame : MonoBehaviour
                 if (player_coll != null && !PlayerStats.getInvincible())
                 {
                     PlayerStats.setDealtDmg(true);
-                    PlayerStats.setHealth(PlayerStats.getHealth() - 1);
+                    PlayerStats.setHealth(PlayerStats.getHealth() - 2);
                 }
                 Object.Destroy(gameObject);
             }

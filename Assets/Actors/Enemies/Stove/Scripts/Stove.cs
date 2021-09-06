@@ -6,13 +6,20 @@ using UnityEngine;
 public class Stove : MonoBehaviour{
     Player play;
     SpriteRenderer spriteRenderer;
-    PolygonCollider2D col;
+    BoxCollider2D col;
     List<Vector2> physicsShape = new List<Vector2>();
     public GameObject Fire, Flame;
     public Animator anim;
     int action, health, i;
     bool coff, marked, inhaling, blow;
     double clock;
+
+    IEnumerator IFrames(float time)
+    {
+        GetComponent<PolygonCollider2D>().enabled = false;
+        yield return new WaitForSeconds(time);
+        GetComponent<PolygonCollider2D>().enabled = true;
+    }
     IEnumerator Shoot(float time) {
         coff = true;
         anim.SetBool("Coff", coff);
@@ -32,16 +39,15 @@ public class Stove : MonoBehaviour{
     {
         return health;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player_coll = collision.gameObject.GetComponent<Player>();
-        if (player_coll != null)
+        Debug.Log("Entrei");
+        if (collision.gameObject.CompareTag("Attack"))
         {
-            if (play.attacking)
-            {
-                health -= 10;
-                Debug.Log("Ouch");
-            }
+            health -= 10;
+            Debug.Log("Ouch");
+            StartCoroutine(IFrames(0.2f)) ;
+
         }
     }
     double getDistance(){
@@ -60,7 +66,7 @@ public class Stove : MonoBehaviour{
     }
     void Start()
     {
-        health = 120;
+        health = 100;
         play = FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
         marked = false;
@@ -72,7 +78,7 @@ public class Stove : MonoBehaviour{
     {
         coff = false;
         action = UnityEngine.Random.Range(0, 10000);
-        if (action >= 9800 && Time.time > 3)
+        if (action >= 9950 && Time.time > 3)
         {
             StartCoroutine(Shoot(0.2f));
         }
@@ -80,22 +86,23 @@ public class Stove : MonoBehaviour{
             clock = Time.time;
             marked = true;
         }
-        if (marked && Time.time - clock >= 2 && !inhaling){
+        if (marked && Time.time - clock >= 3 && !inhaling){
             inhaling = true;
             StartCoroutine(Inhale());
         }
         if (blow){
-            for(i = 0; i < 20; i++){
+            for(i = 0; i < 1; i++){
                 Instantiate(Flame, new Vector3(UnityEngine.Random.Range(-0.5f,0.5f), UnityEngine.Random.Range(5.8f, 6.8f) , 0), Quaternion.identity);
             }
         }
         if (health <= 0)
         {
             PlayerStats.setDefeated(1, true);
+            FirePUp firePup = FindObjectOfType<FirePUp>();
+            firePup.GetComponent<Transform>().position = new Vector3(0, 1, 0);
             //PlayerStats.saveGame();
             gameObject.SetActive(false);
         }
-        Debug.Log(health);
         anim.SetBool("Coff", coff);
         anim.SetBool("Inhaling", inhaling);
     }

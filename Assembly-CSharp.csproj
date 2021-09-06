@@ -71,6 +71,7 @@
     <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\Book.cs" />
     <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\Bookshelf.cs" />
     <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Fire.cs" />
+    <Compile Include="Assets\Actors\Enemies\Stove\Scripts\FirePUp.cs" />
     <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Flame.cs" />
     <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Stove.cs" />
     <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\DustCoff.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Actors\Fases\Scripts\StorageExit.cs" />
     <Compile Include="Assets\Actors\Fases\Scripts\Wall.cs" />
     <Compile Include="Assets\Actors\Player\Scripts\Player.cs" />
+    <Compile Include="Assets\Actors\Player\Scripts\PlayerATK.cs" />
     <Compile Include="Assets\Actors\Player\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scenes\Cutscenes\LoadSceneAfterVideoEnded.cs" />
     <Compile Include="Assets\Scenes\Menus\Play.cs" />

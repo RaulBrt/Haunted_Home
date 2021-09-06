@@ -7,20 +7,24 @@ public class Player : MonoBehaviour {
     [SerializeField] float passo = 25f;
     [SerializeField] string levelName;
     Rigidbody2D player_rig;
-    PolygonCollider2D player_coll;
+    BoxCollider2D player_coll;
     SpriteRenderer spriteRenderer;
     List<Vector2> physicsShape = new List<Vector2>();
-    Vector2 pos;
+    Vector3 change;
     public Animator anim;
     bool[] key = new bool[5] { false, false, false, false, false };
     bool[] attack = new bool[4] { false, false, false, false };
+    char[] weaponType;
     public bool isAttacking,attacking, walking;
     int health,i,lastPos;
 
     IEnumerator Attack(float tempo){
+        attacking = true;
+        anim.SetBool("Attack", true);
+        yield return null; 
+        anim.SetBool("Attack", false);
         yield return new WaitForSeconds(tempo);
         attacking = false;
-        PlayerStats.setInvincible(false);
     }
     IEnumerator IFrames(float tempo){
         spriteRenderer.color = Color.red;
@@ -72,7 +76,6 @@ public class Player : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision)
     {
         Flame flame_coll = collision.gameObject.GetComponent<Flame>();
-        Debug.Log("Attacking: " + attacking + ", Invincible: " + PlayerStats.getInvincible());
         if (!PlayerStats.getInvincible() && !attacking){ 
             if (PlayerStats.getDealtDmg() && !attacking && !PlayerStats.getInvincible())
             {
@@ -96,9 +99,23 @@ public class Player : MonoBehaviour {
         PlayerStats.setHealth(100);
         SceneManager.LoadScene(levelName);
     }
+
+    void initiateWeaponWheel()
+    {
+        char[] weaponOptions = new char[5] { 'n','f','a','p','v'};
+        int lastIndex = 1;
+        int i;
+        for ( i = 0; i < 1 ; i++){
+            if (PlayerStats.getPowerup(i))
+            {
+                weaponType[lastIndex] = weaponOptions[i + 1];
+                lastIndex++;
+            }
+        }
+    }
     void Awake(){
         player_rig = GetComponent<Rigidbody2D>();
-        player_coll = GetComponent<PolygonCollider2D>();
+        player_coll = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         health = PlayerStats.getHealth();
@@ -107,12 +124,14 @@ public class Player : MonoBehaviour {
         walking = false;
         PlayerStats.setInvincible(false);
         lastPos = 0;
+        weaponType = new char[5] { 'n', '\0', '\0', '\0', '\0' };
+        initiateWeaponWheel();
+        Debug.Log(weaponType[0]);
+        Debug.Log(weaponType[1]);
     }
     void Update() {
         //Debug.Log(PlayerStats.getHealth());
-        pos.x = player_rig.position.x;
-        pos.y = player_rig.position.y;
-        for(i = 0; i < 5; i++){
+        /*for(i = 0; i < 5; i++){
             key[i] = false;
         }
         for (i = 0; i < 4; i++){
@@ -141,44 +160,26 @@ public class Player : MonoBehaviour {
                     break;
                 }
             }
-        }
-        else if (!attacking)
+        }*/
+        change = Vector3.zero;
+        change.x = Input.GetAxisRaw("Horizontal");
+        change.y = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking)
         {
-            if (Input.GetKey(KeyCode.W))
-            {
-                pos.y += passo * Time.deltaTime;
-                key[0] = true;
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                pos.y -= passo * Time.deltaTime;
-                key[2] = true;
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                pos.x -= passo * Time.deltaTime;
-                key[1] = true;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                pos.x += passo * Time.deltaTime;
-                key[3] = true;
-            }
-            for (i = 0; i < 4; i++)
-            {
-                if (key[i])
-                {
-                    lastPos = getDir();
-                    walking = true;
-                    break;
-                }
-                else
-                {
-                    walking = false;
-                }
-            }
+            StartCoroutine(Attack(0.18f));
         }
-        player_rig.MovePosition(pos);
+        else if (change != Vector3.zero)
+        {
+            player_rig.MovePosition(transform.position+change*passo*Time.deltaTime);
+            anim.SetFloat("movimentoX", change.x);
+            anim.SetFloat("movimentoY", change.y);
+            anim.SetBool("Walk", true);
+        }
+        else
+        {
+            anim.SetBool("Walk", false);
+        }
+
         anim.SetInteger("AtkDir", getAttackDir());
         if (walking)
         {
@@ -190,13 +191,8 @@ public class Player : MonoBehaviour {
         }
         anim.SetInteger("LastPos", lastPos);
         anim.SetBool("Attack", attacking);
-        anim.SetBool("Walk", walking);
         if (PlayerStats.getHealth() <= 0){
             //die();
         }
-    }
-    void LateUpdate(){
-        spriteRenderer.sprite.GetPhysicsShape(0, physicsShape);
-        player_coll.SetPath(0, physicsShape);
     }
 }

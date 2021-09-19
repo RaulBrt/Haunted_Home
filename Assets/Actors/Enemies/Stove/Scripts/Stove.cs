@@ -41,7 +41,6 @@ public class Stove : MonoBehaviour{
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Entrei");
         if (collision.gameObject.CompareTag("Attack"))
         {
             health -= 10;
@@ -78,7 +77,7 @@ public class Stove : MonoBehaviour{
     {
         coff = false;
         action = UnityEngine.Random.Range(0, 10000);
-        if (action >= 9950 && Time.time > 3)
+        if (action >= 9900 && Time.time > 3)
         {
             StartCoroutine(Shoot(0.2f));
         }
@@ -91,7 +90,7 @@ public class Stove : MonoBehaviour{
             StartCoroutine(Inhale());
         }
         if (blow){
-            for(i = 0; i < 1; i++){
+            for(i = 0; i < 7; i++){
                 Instantiate(Flame, new Vector3(UnityEngine.Random.Range(-0.5f,0.5f), UnityEngine.Random.Range(5.8f, 6.8f) , 0), Quaternion.identity);
             }
         }

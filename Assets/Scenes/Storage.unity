@@ -1036,7 +1036,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769068740}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4, y: 0.18000007, z: 0}
+  m_LocalPosition: {x: -0.06, y: 5.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1.8891592}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1191,6 +1191,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666296048148534, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666296048148534, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666296106893020, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666296106893020, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666296216937789, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666297216354717, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666297216354717, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666297216354717, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666297216354717, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666297216354717, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666297514746700, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305666297904289983, guid: 9eca446753913494bb129191400e79f3,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8220289489270727132, guid: 9eca446753913494bb129191400e79f3,
         type: 3}

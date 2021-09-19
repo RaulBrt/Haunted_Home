@@ -124,17 +124,23 @@ public class Bookshelf : MonoBehaviour
         Player player_coll = collision.gameObject.GetComponent<Player>();
         if (player_coll != null)
         {
-            if ((checkDamage() && play.attacking) || Input.GetKey(KeyCode.Mouse0))
-            {
-                health -= 15;
-            }
             if(mark2 && !Input.GetKey(KeyCode.Mouse0))
             {
                 PlayerStats.setDealtDmg(true);
-                PlayerStats.setHealth(PlayerStats.getHealth() - 10);
+                PlayerStats.setHealth(PlayerStats.getHealth() - 15);
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+            Debug.Log("Trigger2");
+            if (collision.gameObject.CompareTag("Attack"))
+            {
+                Debug.Log("Trigger3");
+                health -= 10;
+            }
+        }
     void Awake()
     {
         if (PlayerStats.getDefeated(2))
@@ -233,7 +239,6 @@ public class Bookshelf : MonoBehaviour
         }
         if(mark2 && Time.time-clock2 > 1)
         {
-            Debug.Log("Check1");
             clock = Time.time;
             anim.SetBool("attack", false);
             mark2 = false;
@@ -242,7 +247,6 @@ public class Bookshelf : MonoBehaviour
         }
         if (coolDown && Time.time - clock3 > 5)
         {
-            Debug.Log("Check2");
             anim.SetBool("attack", false);
             coolDown = false;
         }

@@ -8,7 +8,7 @@ public static class PlayerStats{
     static int i;
     static int health = 120;
     static bool[] DefeatedBosses = new bool[3];
-    static bool[] Powerup = new bool[1];
+    static bool[] Powerup = new bool[3];
     static bool DealtDmg, Invincible;
     public static int getHealth() {
         return health;

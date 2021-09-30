@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
         attacking = false;
     }
     IEnumerator IFrames(float tempo){
+        PlayerStats.setInvincible(true);
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(tempo);
         spriteRenderer.color = Color.white;
@@ -79,10 +80,6 @@ public class Player : MonoBehaviour {
         if (!PlayerStats.getInvincible() && !attacking){ 
             if (PlayerStats.getDealtDmg() && !attacking && !PlayerStats.getInvincible())
             {
-                if (flame_coll == null)
-                {
-                    PlayerStats.setInvincible(true);
-                }
                 health = PlayerStats.getHealth();
                 PlayerStats.setDealtDmg(false);
                 if (flame_coll == null)
@@ -130,37 +127,6 @@ public class Player : MonoBehaviour {
         Debug.Log(weaponType[1]);
     }
     void Update() {
-        //Debug.Log(PlayerStats.getHealth());
-        /*for(i = 0; i < 5; i++){
-            key[i] = false;
-        }
-        for (i = 0; i < 4; i++){
-            attack[i] = false;
-        }
-        attacking = false;
-        PlayerStats.setInvincible(false);
-        if (Input.GetKey(KeyCode.Mouse0) && !attacking){
-            attacking = true;
-            PlayerStats.setInvincible(true);
-            if (Input.GetKey(KeyCode.W)){
-                attack[0] = true;
-            }
-            else if (Input.GetKey(KeyCode.S)){
-                attack[2] = true;
-            }
-            if (Input.GetKey(KeyCode.A)){
-                attack[1] = true;
-            }
-            else if (Input.GetKey(KeyCode.D)){
-                attack[3] = true;
-            }
-            for (i = 0; i < 4; i++){
-                if (attack[i]){
-                    StartCoroutine(Attack(0.1f));
-                    break;
-                }
-            }
-        }*/
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");

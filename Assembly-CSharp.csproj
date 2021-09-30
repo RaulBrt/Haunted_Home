@@ -69,6 +69,7 @@
     <Compile Include="Assets\Actors\BarraDeVida\Script\StoveHB.cs" />
     <Compile Include="Assets\Actors\BarraDeVida\Script\VacuumHB.cs" />
     <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\Book.cs" />
+    <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\BookPUp.cs" />
     <Compile Include="Assets\Actors\Enemies\Bookshelf\Scripts\Bookshelf.cs" />
     <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Fire.cs" />
     <Compile Include="Assets\Actors\Enemies\Stove\Scripts\FirePUp.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Actors\Enemies\Stove\Scripts\Stove.cs" />
     <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\DustCoff.cs" />
     <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\Vacuum.cs" />
+    <Compile Include="Assets\Actors\Enemies\Vacuum\Scripts\WindPUp.cs" />
     <Compile Include="Assets\Actors\Fases\Scripts\Camera.cs" />
     <Compile Include="Assets\Actors\Fases\Scripts\DeathScreen.cs" />
     <Compile Include="Assets\Actors\Fases\Scripts\KitchenExit.cs" />

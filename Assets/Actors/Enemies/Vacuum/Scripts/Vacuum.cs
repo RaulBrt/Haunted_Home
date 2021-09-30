@@ -29,7 +29,6 @@ public class Vacuum : MonoBehaviour{
         coffing = false;
     }
     IEnumerator Rush(float tempo){
-        Debug.Log("Rush");;
         rushing = true;
         vac_rig.velocity = Vector2.zero;
         vac_rig.angularVelocity = 0;
@@ -43,7 +42,7 @@ public class Vacuum : MonoBehaviour{
         //vac_rig.MovePosition(vac_pos);
     }
     void Coff(){
-        Debug.Log("Coff");
+
         coffing = true;
         //vac_rig.velocity = Vector3.zero;
         Instantiate(Dust, vac_rig.position, Quaternion.identity);
@@ -156,23 +155,26 @@ public class Vacuum : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         vac_rig.mass = 1;
-        action = Random.Range(0, 10000);
+        action = Random.Range(0, 1000);
         vac_anim.SetInteger("Walking Angle", getWalkingDir(getWalkingAngle(getDir())));
-        if (action <= 9900 && !coffing && !rushing){
+        if (action <= 965 && !coffing && !rushing){
             Walk(vac_speed);
         }
-        else if ((action > 9900 && action <= 9950 && !coffing) || rushing) {
+        else if ((action > 965 && action <= 980 && !coffing) || rushing) {
             if (!rushing){
                 StartCoroutine(Rush(1.5f));
             }
             vac_pos += rush_dir * 0.25f;
             vac_rig.MovePosition(vac_pos);
         }
-        else if(action > 9950 && !rushing && Time.time < 1){
+        if(action > 980 && !rushing){
             Coff();
             coffing = false;
         }
         if(health < 0){
+            PlayerStats.setDefeated(1, true);
+            WindPUp windPup = FindObjectOfType<WindPUp>();
+            windPup.GetComponent<Transform>().position = new Vector3(0, 1, 0);
             PlayerStats.setDefeated(0, true);
             //PlayerStats.saveGame();
             gameObject.SetActive(false);

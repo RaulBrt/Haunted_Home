@@ -134,10 +134,8 @@ public class Bookshelf : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-            Debug.Log("Trigger2");
             if (collision.gameObject.CompareTag("Attack"))
             {
-                Debug.Log("Trigger3");
                 health -= 10;
             }
         }
@@ -212,6 +210,8 @@ public class Bookshelf : MonoBehaviour
 
         if (health <= 0)
         {
+            BookPUp bookPup = FindObjectOfType<BookPUp>();
+            bookPup.GetComponent<Transform>().position = new Vector3(0,-1, 0);
             PlayerStats.setDefeated(2, true);
             UnityEngine.Object.Destroy(gameObject);
         }

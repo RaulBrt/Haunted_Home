@@ -9,7 +9,7 @@ public class FirePUp : MonoBehaviour
         Player player_coll = collision.gameObject.GetComponent<Player>();
         if (player_coll != null)
         {
-            PlayerStats.setPowerup(0,true);
+            PlayerStats.setPowerup(1,true);
             Object.Destroy(gameObject);
         }
         

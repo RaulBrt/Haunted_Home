@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class PlayerStats{
-    static int i;
+    static int i, activeWeapon;
+    static int maxWeapon = 3;
     static int health = 120;
     static bool[] DefeatedBosses = new bool[3];
-    static bool[] Powerup = new bool[3];
+    static bool[] Powerup = new bool[maxWeapon+1];
     static bool DealtDmg, Invincible;
+    static bool started = false;
     public static int getHealth() {
         return health;
     }
@@ -46,7 +48,29 @@ public static class PlayerStats{
     {
         return Powerup[index];
     }
-    public static void saveGame(){
+
+    public static int weaponWheel(int sum)
+    {
+        if (activeWeapon + sum > maxWeapon)
+        {
+            activeWeapon = 0;
+        }
+        else if (activeWeapon + sum < 0)
+        {
+            activeWeapon = maxWeapon;
+        }
+        else
+        {
+            activeWeapon += sum;
+        }
+        if (!getPowerup(activeWeapon))
+        {
+            weaponWheel(sum);
+        }
+        return activeWeapon;
+
+    }
+    /*public static void saveGame(){
         Debug.Log("Check2");
         string[] dados = new string[] { health.ToString(), DefeatedBosses[0].ToString(), DefeatedBosses[1].ToString(), DefeatedBosses[2].ToString() };
         Debug.Log("Check3");
@@ -67,12 +91,23 @@ public static class PlayerStats{
             }
 
         }
-    }
-    private static void Start(){
-        for(i = 0; i < 3; i++){
-            DefeatedBosses[i] = false;
+    }*/
+    public static void Awake(){
+        if (!started)
+        {
+            for (i = 0; i < 3; i++)
+            {
+                DefeatedBosses[i] = false;
+            }
+            setPowerup(0, true);
+            for (i = 1; i < maxWeapon; i++)
+            {
+                setPowerup(i, false);
+            }
+            DealtDmg = false;
+            Invincible = false;
+            activeWeapon = 0;
+            started = true;
         }
-        DealtDmg = false;
-        Invincible = false;
     }
 }

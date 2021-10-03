@@ -22,6 +22,10 @@ public class VacuumHB : MonoBehaviour
         {
             health -= 1;
         }
+        if(health < 0)
+        {
+            health = 0;
+        }
         spriteRenderer.sprite = sprites[health];
     }
 }

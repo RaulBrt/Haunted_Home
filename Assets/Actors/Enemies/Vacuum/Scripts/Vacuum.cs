@@ -172,9 +172,9 @@ public class Vacuum : MonoBehaviour{
             coffing = false;
         }
         if(health < 0){
-            PlayerStats.setDefeated(1, true);
-            WindPUp windPup = FindObjectOfType<WindPUp>();
-            windPup.GetComponent<Transform>().position = new Vector3(0, 1, 0);
+            PlayerStats.setDefeated(0, true);
+            VacuumPUp vacuumPup = FindObjectOfType<VacuumPUp>();
+            vacuumPup.GetComponent<Transform>().position = new Vector3(0, 1, 0);
             PlayerStats.setDefeated(0, true);
             //PlayerStats.saveGame();
             gameObject.SetActive(false);

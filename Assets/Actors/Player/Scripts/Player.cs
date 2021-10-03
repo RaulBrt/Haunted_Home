@@ -2,42 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
     [SerializeField] float passo = 25f;
     [SerializeField] string levelName;
     Rigidbody2D player_rig;
     BoxCollider2D player_coll;
     SpriteRenderer spriteRenderer;
-    List<Vector2> physicsShape = new List<Vector2>();
     Vector3 change;
     public Animator anim;
     bool[] key = new bool[5] { false, false, false, false, false };
     bool[] attack = new bool[4] { false, false, false, false };
-    char[] weaponType;
-    public bool isAttacking,attacking, walking;
-    int health,i,lastPos;
+    public bool isAttacking, attacking, walking, changingWeapon;
+    int i, lastPos;
 
-    IEnumerator Attack(float tempo){
+    IEnumerator Attack(float tempo)
+    {
         attacking = true;
         anim.SetBool("Attack", true);
-        yield return null; 
+        yield return null;
         anim.SetBool("Attack", false);
         yield return new WaitForSeconds(tempo);
         attacking = false;
     }
-    IEnumerator IFrames(float tempo){
+    IEnumerator IFrames(float tempo)
+    {
         PlayerStats.setInvincible(true);
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(tempo);
         spriteRenderer.color = Color.white;
         PlayerStats.setInvincible(false);
     }
-    public int getAttackDir() {
+    IEnumerator Wait(float tempo)
+    {
+        changingWeapon = true;
+        yield return new WaitForSeconds(tempo);
+        changingWeapon = false;
+    }
+    public int getAttackDir()
+    {
         int dir = 0;
         int i;
         bool btn = false;
-        for(i = 0; i < 4; i++)
+        for (i = 0; i < 4; i++)
         {
             if (attack[i])
             {
@@ -45,11 +53,12 @@ public class Player : MonoBehaviour {
                 break;
             }
         }
-        if (btn){
+        if (btn)
+        {
             if (attack[0])
-              dir = 1;
+                dir = 1;
             else if (attack[2])
-              dir = 5;
+                dir = 5;
             else if (attack[1])
                 dir = 7;
             else if (attack[3])
@@ -60,9 +69,10 @@ public class Player : MonoBehaviour {
         {
             return lastPos;
         }
-        
+
     }
-    int getDir(){
+    int getDir()
+    {
         int dir = 0;
         if (key[0])
             dir = 1;
@@ -77,10 +87,10 @@ public class Player : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision)
     {
         Flame flame_coll = collision.gameObject.GetComponent<Flame>();
-        if (!PlayerStats.getInvincible() && !attacking){ 
+        if (!PlayerStats.getInvincible() && !attacking)
+        {
             if (PlayerStats.getDealtDmg() && !attacking && !PlayerStats.getInvincible())
             {
-                health = PlayerStats.getHealth();
                 PlayerStats.setDealtDmg(false);
                 if (flame_coll == null)
                 {
@@ -91,61 +101,65 @@ public class Player : MonoBehaviour {
         }
         //Debug.Log(PlayerStats.getHealth());
     }
-    void die(){
+    void die()
+    {
         Debug.Log("Dead");
         PlayerStats.setHealth(100);
         SceneManager.LoadScene(levelName);
     }
 
-    void initiateWeaponWheel()
+    void Awake()
     {
-        char[] weaponOptions = new char[5] { 'n','f','a','p','v'};
-        int lastIndex = 1;
-        int i;
-        for ( i = 0; i < 1 ; i++){
-            if (PlayerStats.getPowerup(i))
-            {
-                weaponType[lastIndex] = weaponOptions[i + 1];
-                lastIndex++;
-            }
-        }
-    }
-    void Awake(){
+        PlayerStats.Awake();
         player_rig = GetComponent<Rigidbody2D>();
         player_coll = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        health = PlayerStats.getHealth();
         isAttacking = false;
         attacking = false;
         walking = false;
         PlayerStats.setInvincible(false);
         lastPos = 0;
-        weaponType = new char[5] { 'n', '\0', '\0', '\0', '\0' };
-        initiateWeaponWheel();
-        Debug.Log(weaponType[0]);
-        Debug.Log(weaponType[1]);
+        PlayerStats.weaponWheel(0);
+        changingWeapon = false;
     }
-    void Update() {
+    void Update()
+    {
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking)
-        {
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking) {
             StartCoroutine(Attack(0.18f));
         }
+
+        if (Input.GetKeyDown(KeyCode.Q) && !changingWeapon)
+        {
+            PlayerStats.weaponWheel(-1);
+            StartCoroutine(Wait(0.15f));
+            Debug.LogWarning(PlayerStats.weaponWheel(0));
+        }
+
+
+        else if (Input.GetKeyDown(KeyCode.E) && !changingWeapon)
+        {
+            PlayerStats.weaponWheel(1);
+            StartCoroutine(Wait(0.15f));
+            Debug.LogWarning(PlayerStats.weaponWheel(0));
+        }
+        
         else if (change != Vector3.zero)
         {
-            player_rig.MovePosition(transform.position+change*passo*Time.deltaTime);
+            player_rig.MovePosition(transform.position + change * passo * Time.deltaTime);
             anim.SetFloat("movimentoX", change.x);
             anim.SetFloat("movimentoY", change.y);
             anim.SetBool("Walk", true);
         }
+        
         else
         {
             anim.SetBool("Walk", false);
         }
-
         anim.SetInteger("AtkDir", getAttackDir());
         if (walking)
         {
@@ -157,8 +171,9 @@ public class Player : MonoBehaviour {
         }
         anim.SetInteger("LastPos", lastPos);
         anim.SetBool("Attack", attacking);
-        if (PlayerStats.getHealth() <= 0){
-            //die();
+        if (PlayerStats.getHealth() <= 0)
+        {
+            die();
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
-    [SerializeField] float passo = 25f;
+    [SerializeField] float passo = 35f;
     [SerializeField] string levelName;
     Rigidbody2D player_rig;
     BoxCollider2D player_coll;

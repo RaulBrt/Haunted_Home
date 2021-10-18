@@ -42,7 +42,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -57,13 +57,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.03048569, y: 0.0396986}
-      - {x: -0.6538205, y: -0.041569084}
+    - - {x: 0.5565348, y: -0.6886769}
+      - {x: -0.33009815, y: -0.72947943}
       - {x: -1.1137486, y: -0.9495065}
-      - {x: -0.35152048, y: -1.3501393}
-      - {x: 0.68686384, y: -1.0071743}
-      - {x: 1.0064316, y: -0.60647583}
-      - {x: 1.141593, y: 0.027023733}
+      - {x: -4.143351, y: -4.505609}
+      - {x: -0.7561737, y: -6.0845838}
+      - {x: 2.0626867, y: -4.6085896}
+      - {x: 3.4820447, y: -3.08615}
+      - {x: 4.125648, y: -1.371933}
+      - {x: 2.3722396, y: -0.5176244}
 --- !u!114 &7305666296106893021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +120,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -133,13 +135,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.0288944, y: 1.0228643}
-      - {x: -1.2254283, y: 0.82727504}
-      - {x: -1.2356915, y: -0.5531914}
+    - - {x: -2.0307047, y: 3.8701172}
+      - {x: -3.6508658, y: 1.5654509}
+      - {x: -1.6575065, y: -0.44773757}
       - {x: 0.18198043, y: -0.34410918}
-      - {x: 0.7859428, y: -0.0316298}
-      - {x: 1.379882, y: 0.7272763}
-      - {x: 0.32609868, y: 1.3302901}
+      - {x: 0.7859428, y: -0.34799147}
+      - {x: 2.063477, y: -0.69018394}
+      - {x: 4.80713, y: 2.2563562}
+      - {x: 3.1691697, y: 4.5486584}
+      - {x: 0.9588207, y: 5.8120766}
 --- !u!114 &7305666296216937794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 7305666297216354713}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.07, y: -2.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 2}
   m_Children:
   - {fileID: 7305666296106893023}
   - {fileID: 7305666297904289982}
@@ -230,7 +234,7 @@ SpriteRenderer:
   m_SortingLayerID: -1768737833
   m_SortingLayer: 2
   m_SortingOrder: 30
-  m_Sprite: {fileID: 21300000, guid: 882cd94f82f495f45b4946dbf1ef80ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a07364fca8bc9c346be742c900032284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -299,6 +303,7 @@ MonoBehaviour:
   isAttacking: 0
   attacking: 0
   walking: 0
+  changingWeapon: 0
 --- !u!61 &7305666297216354718
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -316,7 +321,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 4, y: 5.8}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -367,7 +372,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -382,13 +387,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5106365, y: 0.7637353}
-      - {x: -0.14318407, y: 0.9797038}
-      - {x: -0.21441853, y: -0.01969099}
-      - {x: 0.16673738, y: -0.671831}
+    - - {x: 5.35655, y: -1.4085705}
+      - {x: 4.430178, y: 1.1961167}
+      - {x: 2.1962223, y: 2.3582826}
+      - {x: 0.9135097, y: 0.063859046}
+      - {x: 0.5844896, y: -0.671831}
       - {x: 0.52681345, y: -0.95382404}
-      - {x: 1.0064316, y: -0.60647583}
-      - {x: 1.3245077, y: -0.14826924}
+      - {x: 0.7557811, y: -2.4445808}
+      - {x: 3.3297122, y: -4.7435303}
 --- !u!114 &7305666297514746701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +449,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -458,14 +464,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.03048569, y: 0.0396986}
-      - {x: -0.24667633, y: 0.76235485}
-      - {x: -0.8824634, y: 0.26328826}
-      - {x: -1.296663, y: -0.14925528}
-      - {x: -1.0679356, y: -0.65658844}
-      - {x: -0.47159517, y: -0.9766884}
+    - - {x: -0.8050154, y: 0.20679937}
+      - {x: -2.8904562, y: 3.165792}
+      - {x: -4.6879053, y: 0.66386145}
+      - {x: -5.702965, y: -1.5112035}
+      - {x: -4.9703546, y: -3.3335829}
+      - {x: -3.3655653, y: -4.9594235}
+      - {x: -0.38804513, y: -2.188166}
       - {x: -0.17489183, y: -0.99516964}
-      - {x: 0.20415619, y: -0.52934134}
+      - {x: -0.5477952, y: -0.5711164}
 --- !u!114 &7305666297904289980
 MonoBehaviour:
   m_ObjectHideFlags: 0

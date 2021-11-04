@@ -1,31 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class StoveHB : MonoBehaviour
-{
-    int health;
-    SpriteRenderer spriteRenderer;
-    Stove stv;
-    public Sprite[] sprites;
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        stv = FindObjectOfType<Stove>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        health = (int)stv.getHealth() / 10;
-        if (health > 0)
-        {
-            health -= 1;
-        }
-        if (health < 0)
-        {
-            health = 0;
-        }
-        spriteRenderer.sprite = sprites[health];
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:6acb5cf4d40310b3085f45c8aac879aae01071a01d210ffd06d85131d7b612c4
+size 677

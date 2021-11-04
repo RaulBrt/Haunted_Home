@@ -1,31 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class DeathScreen : MonoBehaviour{
-    [SerializeField] string LevelName;
-    bool isDead,terminou;
-    public Animator anim;
-    IEnumerator delay(int seconds){
-        yield return new WaitForSeconds(seconds);
-        terminou = true;
-
-    }
-    void Start(){
-        isDead = false;
-        terminou = false;
-        anim = GetComponent<Animator>();
-        isDead = true;
-        anim.SetBool("isDead", isDead);
-        StartCoroutine(delay(3));
-        
-    }
-    void Update() {
-        if (terminou){
-            SceneManager.LoadScene(LevelName);
-
-        }
-
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:403618d4d9ddadaabd45c44371b8ee05a062ca5b28bad31c04c4cd8e38c76b7e
+size 731

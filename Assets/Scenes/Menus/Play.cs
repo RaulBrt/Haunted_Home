@@ -1,14 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-public class Play : MonoBehaviour
-{
-    [SerializeField] string levelName;
-
-    void OnMouseDown()
-    {
-        Debug.Log("Play");
-        SceneManager.LoadScene(levelName);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9625ee5305f4994981874155812042eca3f7e27f186aaa514cb6e7b4739ce850
+size 314

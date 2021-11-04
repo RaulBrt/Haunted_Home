@@ -1,17 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class FirePUp : MonoBehaviour
-{
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Player player_coll = collision.gameObject.GetComponent<Player>();
-        if (player_coll != null)
-        {
-            PlayerStats.setPowerup(1,true);
-            Object.Destroy(gameObject);
-        }
-        
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e038c73b40674f4b9780ac5dcf1a5f5ffcd0ceb8ae0a23572ca9e665cb1e92dd
+size 424

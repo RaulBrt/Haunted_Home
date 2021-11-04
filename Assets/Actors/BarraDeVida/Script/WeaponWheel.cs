@@ -1,22 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class WeaponWheel : MonoBehaviour
-{
-    SpriteRenderer spriteRenderer;
-    public Sprite[] sprites;
-    // Start is called before the first frame update
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sprites[PlayerStats.weaponWheel(0)];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        spriteRenderer.sprite = sprites[PlayerStats.weaponWheel(0)];
-        
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ea76834f8d43447e6b7bd8b7233a6d02d36f3d40ca36af34983182ed0dbd425a
+size 570

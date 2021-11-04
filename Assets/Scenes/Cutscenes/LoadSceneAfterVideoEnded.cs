@@ -1,23 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Video;
-using UnityEngine.SceneManagement;
-
-public class LoadSceneAfterVideoEnded : MonoBehaviour
-{
-    public VideoPlayer VideoPlayer; // Drag & Drop the GameObject holding the VideoPlayer component
-    public string SceneName;
-    void Start()
-    {
-        VideoPlayer.loopPointReached += LoadScene;
-    }
-    void LoadScene(VideoPlayer vp)
-    {
-        for(int i = 0; i < 3; i++)
-        {
-            PlayerStats.setDefeated(i, false);
-        }
-        SceneManager.LoadScene(SceneName);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a72f4781f5dfea335a1eee4a2f54af8f30d77ac17c6e70f4fcda696f619232c4
+size 902

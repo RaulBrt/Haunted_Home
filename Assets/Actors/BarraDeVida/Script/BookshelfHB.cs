@@ -1,32 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BookshelfHB : MonoBehaviour
-{
-    int health;
-    SpriteRenderer spriteRenderer;
-    Bookshelf book;
-    public Sprite[] sprites;
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        book = FindObjectOfType<Bookshelf>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        health = (int)book.getHealth() / 10;
-        if (health > 0)
-        {
-            health -= 1;
-        }
-        if (health < 0)
-        {
-            health = 0;
-        }
-        spriteRenderer.sprite = sprites[health];
-    }
-}
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:daed40ec1bda2eb2c5ac8e06595b20699bed16702ae1372cfcfe1905bd869b85
+size 694

@@ -1,20 +1,3 @@
-# Changelog
-## [1.0.5] - 2020-11-04
-- Removed pdb files
-  
-## [1.0.4] - 2020-11-03
-- Added the portable-pdb (DSTR-37)
-  
-## [1.0.3] - 2020-10-30
-- Fixed being able to load mdb or portable-pdb symbolsbug (DSTR-37)
-- Minimum unity version updated (case 1279253)
-
-## [1.0.2] - 2019-12-04
-
-- Added missed metafiles
-
-## [0.0.1] - 2019-02-21
-
-### This is the first release of *Unity Package com.unity.ext.nunit*.
-
-- Migrated the custom version of nunit from inside of unity.
+version https://git-lfs.github.com/spec/v1
+oid sha256:1a1a1dfcff654a6faf20c0f38267fe91d1f751e0d7bb802116dceab4933c9b0d
+size 489

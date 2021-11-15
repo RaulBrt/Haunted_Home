@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4433c550afea5ec2dc459fc0621933bfefe3956abb1ffe0ce6ada89da5bb4b75
-size 312
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TopWall : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

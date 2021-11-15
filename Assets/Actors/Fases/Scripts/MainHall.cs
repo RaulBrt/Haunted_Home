@@ -1,3 +1,26 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e76759cbd8378877867cc19238405b8a9a15c3e45cd357aed0da99201a041736
-size 565
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MainHall : MonoBehaviour
+{
+    int i;
+    bool win = true;
+    public string SceneName;
+    // Start is called before the first frame update
+    void Start()
+    {
+       for(i = 0; i < 3; i++)
+        {
+            if (!PlayerStats.getDefeated(i))
+            {
+                win = false;
+            }
+        }
+        if (win)
+        {
+            SceneManager.LoadScene(SceneName);
+        }
+    }
+}

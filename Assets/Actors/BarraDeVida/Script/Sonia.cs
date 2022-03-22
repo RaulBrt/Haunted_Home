@@ -1,30 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Sonia : MonoBehaviour
-{
-    int health;
-    SpriteRenderer spriteRenderer;
-    public Sprite[] sprites;
-    void Start()
-    {
-        health = (int)PlayerStats.getHealth() / 10;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        health = (int)PlayerStats.getHealth() / 10;
-        if (health > 0)
-        {
-            health -= 1;
-        }
-        if (health < 0)
-        {
-            health = 0;
-        }
-        spriteRenderer.sprite = sprites[health];
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:aedca64b07ee944e9033f2eac9ccd3111aa9db1d79b9c3c921ec2137eccf97a4
+size 678

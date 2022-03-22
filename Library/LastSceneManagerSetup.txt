@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f907de157f0c1242a9435b9a10ab7b7272b85e6b7b98472d84e4a0a534807822
-size 91
+sceneSetups:
+- path: Assets/Scenes/Piano.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0

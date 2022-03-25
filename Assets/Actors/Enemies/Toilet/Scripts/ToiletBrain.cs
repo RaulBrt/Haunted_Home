@@ -1,3 +1,43 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ae80af5912853b53bb3c269355c13b240c3bf31f8a099c3b18f46a39e2d5bb6e
-size 843
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ToiletBrain : MonoBehaviour
+{
+    private int health, action;
+    // Start is called before the first frame update
+    void Start()
+    {
+        health = 100;
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public void setHealth(int vida)
+    {
+        health = vida;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        action = UnityEngine.Random.Range(0, 100);
+        if(action >= 99)
+        {
+            //Debug.Log("Teleport");
+        }
+        else if(action < 99 && action >= 97)
+        {
+            //Debug.Log("Shoot");
+        }
+        else if(action < 97 && action >= 95)
+        {
+            //Debug.Log("Jet");
+        }
+    }
+
+
+}

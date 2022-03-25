@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fe4cc84823f005e2664cc22637772215f5477252ede7a4334a712a655f35d7e1
-size 613
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class VacuumHB : MonoBehaviour
+{
+    int health;
+    SpriteRenderer spriteRenderer;
+    Vacuum vac;
+    public Sprite[] sprites;
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        vac = FindObjectOfType<Vacuum>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        health = (int)(vac.getHealth()*0.04f);
+
+        if(health < 0)
+        {
+            health = 0;
+        }
+        spriteRenderer.sprite = sprites[health];
+    }
+}
+

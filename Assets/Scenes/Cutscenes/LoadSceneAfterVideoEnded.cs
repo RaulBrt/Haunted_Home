@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6ce9822a281f44ea60739501002144071d8cf98a317f5688b5e9cbab5d129a86
-size 1254
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
+
+public class LoadSceneAfterVideoEnded : MonoBehaviour
+{
+    public VideoPlayer VP; // Drag & Drop the GameObject holding the VideoPlayer component
+    public string SceneName;
+    bool isCheckPlaying, triggered;
+    IEnumerator espera(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        isCheckPlaying = true;
+    }
+    void Start()
+    {
+        isCheckPlaying = false;
+        triggered = false;
+        VP.loopPointReached += LoadScene;
+    }
+
+    void Update()
+    {
+        if(!triggered && !isCheckPlaying)
+        {
+            triggered = true;
+            StartCoroutine(espera(1f));
+        }
+        if (!VP.isPlaying && isCheckPlaying)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                PlayerStats.setDefeated(i, false);
+            }
+            SceneManager.LoadScene(SceneName);
+        }
+    }
+
+    void LoadScene(VideoPlayer vp)
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            PlayerStats.setDefeated(i, false);
+        }
+        SceneManager.LoadScene(SceneName);
+    }
+}

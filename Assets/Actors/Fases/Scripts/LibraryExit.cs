@@ -1,3 +1,37 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7a3860e58bdd5a8dac4c213d4d6519cd27f14a4492a040806b95a1aa70a15a20
-size 882
+﻿using System.Collections;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LibraryExit : MonoBehaviour
+{
+    [SerializeField] string NextLevel;
+    bool Hit, BossDead;
+    Bookshelf BS;
+    void Start()
+    {
+        Hit = false;
+        BossDead = false;
+        BS = FindObjectOfType<Bookshelf>();
+    }
+    void Update()
+    {
+        if (Hit && PlayerStats.getDefeated(2))
+        {
+            Debug.Log("Check1");
+            //PlayerStats.saveGame();
+            Debug.Log("Check5");
+            SceneManager.LoadScene(NextLevel);
+        }
+    }
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        Hit = false;
+        Player play = coll.gameObject.GetComponent<Player>();
+        if (!Hit && play != null)
+        {
+            Hit = true;
+        }
+    }
+}

@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c9ee0e310b37f5d7dd0e4c5660c82d6d6d379c6ba68ea97fc377f782dcd664ef
-size 633
+{
+  "name": "com.unity.2d.path",
+  "version": "2.0.6",
+  "unity": "2019.4",
+  "unityRelease": "0a10",
+  "displayName": "2D Path",
+  "description": "2D Path provides tooling to edit shapes (polygons and Bézier splines) in EditorWindows and the SceneView.",
+  "category": "2D",
+  "keywords": [
+    "2d",
+    "path"
+  ],
+  "relatedPackages": {
+    "com.unity.2d.path.tests": "2.0.6"
+  },
+  "upmCi": {
+    "footprint": "3fa2e8a1fdf91a55cb66b6e3e1d09bae7e744b86"
+  },
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/2d.git",
+    "type": "git",
+    "revision": "3dd60315414ba10db42e8629a9a74d37929aca1b"
+  }
+}

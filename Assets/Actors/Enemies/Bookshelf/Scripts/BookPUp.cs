@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1fc55e9c7faf0125f1cd330054d13a636dcaf71778998be52447354d9d33ee1a
-size 416
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BookPUp : MonoBehaviour
+{
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player player_coll = collision.gameObject.GetComponent<Player>();
+        if (player_coll != null)
+        {
+            PlayerStats.setPowerup(2, true);
+            Object.Destroy(gameObject);
+        }
+
+    }
+}

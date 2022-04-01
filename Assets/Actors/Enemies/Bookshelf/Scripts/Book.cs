@@ -20,18 +20,11 @@ public class Book : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-<<<<<<< HEAD
         Player player_coll = collision.gameObject.GetComponent<Player>();
-=======
-        Debug.Log("Trigger");
-        Player player_coll = collision.gameObject.GetComponent<Player>();
-        PlayerATK player_atk = collision.gameObject.GetComponent<PlayerATK>();
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
         BottomWall bw = collision.gameObject.GetComponent<BottomWall>();
         TopWall tw = collision.gameObject.GetComponent<TopWall>();
         LeftWall lw = collision.gameObject.GetComponent<LeftWall>();
         RightWall rw = collision.gameObject.GetComponent<RightWall>();
-<<<<<<< HEAD
         if (player_coll != null)
         {
             if (play.attacking && !og)
@@ -68,39 +61,6 @@ public class Book : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-=======
-        if (player_coll != null && !PlayerStats.getInvincible() && !play.attacking)
-        {
-            PlayerStats.setDealtDmg(true);
-            PlayerStats.setHealth(PlayerStats.getHealth() - 5);
-        }
-        if(player_atk != null)
-        {
-            Object.Destroy(gameObject);
-        }
-        if (lw != null)
-        {
-            angle = 0;
-        }
-        else if (rw != null)
-        {
-            angle = 180;
-        }
-        else if (tw != null)
-        {
-            angle = 270;
-        }
-        else if (bw != null)
-        {
-            angle = 90;
-        }
-        
-    }
-
-  /*  private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Colisao");
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
         Player player_coll = collision.gameObject.GetComponent<Player>();
         BottomWall bw = collision.gameObject.GetComponent<BottomWall>();
         TopWall tw = collision.gameObject.GetComponent<TopWall>();
@@ -135,11 +95,7 @@ public class Book : MonoBehaviour
             }
         }
         angle *= Mathf.PI / 180;
-<<<<<<< HEAD
     }
-=======
-    }*/
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
     void Start()
     {
         if (PlayerStats.getDefeated(2))

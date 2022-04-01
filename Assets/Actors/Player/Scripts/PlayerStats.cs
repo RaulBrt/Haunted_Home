@@ -12,10 +12,7 @@ public static class PlayerStats{
     static bool[] Powerup = new bool[maxWeapon+1];
     static bool DealtDmg, Invincible;
     static bool started = false;
-<<<<<<< HEAD
     static bool en = false;
-=======
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
     public static int getHealth() {
         return health;
     }
@@ -133,7 +130,6 @@ public static class PlayerStats{
             sliding = 0;
         }
     }
-<<<<<<< HEAD
 
     public static bool getEn()
     {
@@ -143,6 +139,4 @@ public static class PlayerStats{
     {
         en = lang;
     }
-=======
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
 }

@@ -28,18 +28,12 @@ public class LoadSceneAfterVideoEnded : MonoBehaviour
             triggered = true;
             StartCoroutine(espera(1f));
         }
-<<<<<<< HEAD
         if (!VP.isPlaying && isCheckPlaying)
         {
             for (int i = 0; i < 3; i++)
             {
                 PlayerStats.setDefeated(i, false);
             }
-=======
-        if ((!VP.isPlaying && isCheckPlaying) || Input.GetKey(KeyCode.E))
-        {
-
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
             SceneManager.LoadScene(SceneName);
         }
     }

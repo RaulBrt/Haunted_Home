@@ -94,16 +94,11 @@
      <Compile Include="Assets\Actors\Player\Scripts\PlayerATK.cs" />
      <Compile Include="Assets\Actors\Player\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scenes\Cutscenes\LoadSceneAfterVideoEnded.cs" />
-<<<<<<< HEAD
      <Compile Include="Assets\Scenes\Menus\MainMenu\ComoJogar.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\MudarLingua.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\Play.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\Quit.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\btnComoJogar.cs" />
-=======
-     <Compile Include="Assets\Scenes\Menus\MainMenu\Play.cs" />
-     <Compile Include="Assets\Scenes\Menus\MainMenu\Quit.cs" />
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
      <Compile Include="Assets\Scenes\Menus\PauseMenu\MainMenu.cs" />
      <Compile Include="Assets\Scenes\Menus\PauseMenu\PauseMenu.cs" />
      <Compile Include="Assets\Scenes\Menus\PauseMenu\Sair.cs" />
@@ -291,11 +286,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
-<<<<<<< HEAD
  <HintPath>E:/Projetos/Unity/Haunted_Home/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
-=======
- <HintPath>D:/Haunted_Home/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -643,7 +634,6 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
-<<<<<<< HEAD
  <HintPath>E:/Projetos/Unity/Haunted_Home/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Animation.Runtime">
@@ -723,87 +713,6 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>E:/Projetos/Unity/Haunted_Home/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-=======
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Animation.Runtime">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.PixelPerfect.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.SpriteShape.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Path.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Animation.Triangle.Runtime">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="PsdPlugin">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
- </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Mathematics">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Psdimporter.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.InternalAPIEngineBridge.001">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Common.Runtime">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Tilemap.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.SpriteShape.Runtime">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.PixelPerfect">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Animation.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Mathematics.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Common.Editor">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.InternalAPIEditorBridge.001">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>D:/Haunted_Home/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
->>>>>>> e9060f2cafd8266c7768c6b4545aa34b15d53a17
  </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -28,8 +28,9 @@ public class LoadSceneAfterVideoEnded : MonoBehaviour
             triggered = true;
             StartCoroutine(espera(1f));
         }
-        if (!VP.isPlaying && isCheckPlaying)
+        if ((!VP.isPlaying && isCheckPlaying) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
+            PlayerStats.Awake();
             for (int i = 0; i < 3; i++)
             {
                 PlayerStats.setDefeated(i, false);

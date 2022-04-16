@@ -5,10 +5,13 @@ using UnityEngine;
 public class Nota : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] Sprite[] sprites;
     float angle;
+    SpriteRenderer spriteRenderer;
+    List<Vector2> physicsShape = new List<Vector2>();
     Rigidbody2D rig;
     Player play;
-    Collider2D coll;
+    PolygonCollider2D coll;
     Vector2 startPos, endPos;
     bool og;
     private Nota[] nota;
@@ -38,6 +41,8 @@ public class Nota : MonoBehaviour
     }
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         nota = FindObjectsOfType<Nota>();
         if (nota.Length <= 1)
         {
@@ -50,12 +55,14 @@ public class Nota : MonoBehaviour
             og = false;
             rig = GetComponent<Rigidbody2D>();
             play = FindObjectOfType<Player>();
+            coll = GetComponent<PolygonCollider2D>();
             startPos = rig.position;
             angle *= Mathf.PI / 180;
             if (speed == 0)
             {
                 speed = 0.1f;
             }
+            spriteRenderer.sprite = sprites[Random.Range(0,8)];
         }
     }
     void Update()
@@ -67,5 +74,10 @@ public class Nota : MonoBehaviour
             startPos.y += Mathf.Sin(angle) * speed;
             rig.MovePosition(startPos);
         }
+    }
+    void LateUpdate()
+    {
+        spriteRenderer.sprite.GetPhysicsShape(0, physicsShape);
+        coll.SetPath(0, physicsShape);
     }
 }

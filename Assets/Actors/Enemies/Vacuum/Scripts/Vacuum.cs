@@ -143,6 +143,7 @@ public class Vacuum : MonoBehaviour{
         {
             //Debug.Log(health);
             health -= Convert.ToInt32(10*mod);
+            Walk(-100*vac_speed );
             StartCoroutine(IFrames(0.1f));
         }
     }
@@ -172,12 +173,12 @@ public class Vacuum : MonoBehaviour{
         vac_rig.mass = 1;
         action = UnityEngine.Random.Range(0, 1000);
         vac_anim.SetInteger("Walking Angle", getWalkingDir(getWalkingAngle(getDir())));
-        if (action <= 965 && !coffing && !rushing){
+        if (action <= 975 && !coffing && !rushing){
             Walk(vac_speed);
         }
-        else if ((action > 965 && action <= 980 && !coffing) || rushing) {
+        else if ((action > 975 && action <= 980 && !coffing) || rushing) {
             if (!rushing){
-                StartCoroutine(Rush(1.5f));
+                StartCoroutine(Rush(0.5f));
             }
             vac_pos += rush_dir * 0.25f;
             vac_rig.MovePosition(vac_pos);

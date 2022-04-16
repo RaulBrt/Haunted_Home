@@ -7,9 +7,11 @@ public class PauseMenu : MonoBehaviour
 
     GameObject cam;
     GameObject[] enemy;
+    SpriteRenderer spriteRenderer;
     bool change;
     static bool paused;
-    
+    public Sprite[] sprites;
+
     static public bool getPaused()
     {
         return paused;
@@ -40,6 +42,15 @@ public class PauseMenu : MonoBehaviour
         paused = false;
         cam = GameObject.FindGameObjectWithTag("MainCamera");
         enemy = GameObject.FindGameObjectsWithTag("Enemy");
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if (PlayerStats.getEn())
+        {
+            spriteRenderer.sprite = sprites[1];
+        }
+        else
+        {
+            spriteRenderer.sprite = sprites[0];
+        }
     }
 
     void OnMouseDown()
@@ -53,6 +64,14 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerStats.getEn())
+        {
+            spriteRenderer.sprite = sprites[1];
+        }
+        else
+        {
+            spriteRenderer.sprite = sprites[0];
+        }
         if (Input.GetKeyDown(KeyCode.Escape)){
             change = !change;
         }

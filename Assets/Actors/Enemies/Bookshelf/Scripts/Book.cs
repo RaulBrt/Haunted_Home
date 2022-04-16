@@ -37,26 +37,10 @@ public class Book : MonoBehaviour
                 PlayerStats.setHealth(PlayerStats.getHealth() - 5);
             }
         }
-        else
+        else if (lw != null || rw != null || tw != null || bw != null)
         {
-            if (lw != null)
-            {
-                angle = 0;
-            }
-            else if (rw != null)
-            {
-                angle = 180;
-            }
-            else if (tw != null)
-            {
-                angle = 270;
-            }
-            else if (bw != null)
-            {
-                angle = 90;
-            }
+            Object.Destroy(gameObject);
         }
-        angle *= Mathf.PI / 180;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -75,26 +59,10 @@ public class Book : MonoBehaviour
                 PlayerStats.setHealth(PlayerStats.getHealth() - 3);
             }
         }
-        else
+        else if (lw != null || rw != null || tw != null || bw != null)
         {
-            if (lw != null)
-            {
-                angle = 0;
-            }
-            else if (rw != null)
-            {
-                angle = 180;
-            }
-            else if (tw != null)
-            {
-                angle = 270;
-            }
-            else if (bw != null)
-            {
-                angle = 90;
-            }
+            Object.Destroy(gameObject);
         }
-        angle *= Mathf.PI / 180;
     }
     void Start()
     {

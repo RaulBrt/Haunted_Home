@@ -93,6 +93,8 @@
      <Compile Include="Assets\Actors\Player\Scripts\Player.cs" />
      <Compile Include="Assets\Actors\Player\Scripts\PlayerATK.cs" />
      <Compile Include="Assets\Actors\Player\Scripts\PlayerStats.cs" />
+     <Compile Include="Assets\Audio\Scripts\AudioManager.cs" />
+     <Compile Include="Assets\Audio\Scripts\Sound.cs" />
      <Compile Include="Assets\Scenes\Cutscenes\LoadSceneAfterVideoEnded.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\ComoJogar.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\MudarLingua.cs" />

@@ -8,6 +8,7 @@ public class Stove : MonoBehaviour{
     Player play;
     SpriteRenderer spriteRenderer;
     BoxCollider2D col;
+    AudioManager audioManager;
     List<Vector2> physicsShape = new List<Vector2>();
     public GameObject Fire, Flame;
     public Animator anim;
@@ -31,8 +32,8 @@ public class Stove : MonoBehaviour{
         Instantiate(Fire, new Vector3(0, 6, 0), Quaternion.identity);
     }
     IEnumerator Inhale(){
-        Debug.Log("Inhale");
-        yield return new WaitForSeconds(2);
+        audioManager.Play("Inhale");
+        yield return new WaitForSeconds(3);
         blow = true;
         yield return new WaitForSeconds(5);
         blow = false;
@@ -82,6 +83,7 @@ public class Stove : MonoBehaviour{
         play = FindObjectOfType<Player>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = FindObjectOfType<AudioManager>();
         marked = false;
         mod = 1;
     }
@@ -91,7 +93,7 @@ public class Stove : MonoBehaviour{
     {
         coff = false;
         action = UnityEngine.Random.Range(0, 10000);
-        if (action >= 9900)
+        if (action >= 9900 && !inhaling)
         {
             StartCoroutine(Shoot(0.2f));
         }
@@ -99,7 +101,7 @@ public class Stove : MonoBehaviour{
             clock = Time.time;
             marked = true;
         }
-        if (marked && Time.time - clock >= 3 && !inhaling){
+        if ((marked && Time.time - clock >= 3 && !inhaling) || Input.GetKey(KeyCode.G)){
             inhaling = true;
             StartCoroutine(Inhale());
         }

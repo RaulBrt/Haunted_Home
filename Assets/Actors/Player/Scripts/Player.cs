@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     Rigidbody2D player_rig;
     BoxCollider2D player_coll;
     SpriteRenderer spriteRenderer;
+    AudioManager audioManager;
     Vector3 change,direcao;
     public Animator anim;
     bool[] key = new bool[5] { false, false, false, false, false };
@@ -87,18 +89,13 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Flame flame_coll = collision.gameObject.GetComponent<Flame>();
-
         if (!PlayerStats.getInvincible() && !attacking)
         {
             if (PlayerStats.getDealtDmg() && !attacking && !PlayerStats.getInvincible())
             {
                 PlayerStats.setDealtDmg(false);
-                if (flame_coll == null)
-                {
-                    StartCoroutine(IFrames(0.75f));
-                }
-
+                audioManager.Play("Damage");
+                StartCoroutine(IFrames(0.5f));
             }
         }
 
@@ -106,18 +103,13 @@ public class Player : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Flame flame_coll = collision.gameObject.GetComponent<Flame>();
-
         if (!PlayerStats.getInvincible() && !attacking)
         {
             if (PlayerStats.getDealtDmg() && !attacking && !PlayerStats.getInvincible())
             {
                 PlayerStats.setDealtDmg(false);
-                if (flame_coll == null)
-                {
-                    StartCoroutine(IFrames(0.75f));
-                }
-
+                audioManager.Play("Damage");
+                StartCoroutine(IFrames(0.5f));
             }
         }
 
@@ -130,12 +122,25 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
+    bool GetFaceButtonDown()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if(Input.GetKeyDown("joystick 1 button " + i))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     void Awake()
     {
         PlayerStats.Awake();
         player_rig = GetComponent<Rigidbody2D>();
         player_coll = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = FindObjectOfType<AudioManager>();
         anim = GetComponent<Animator>();
         isAttacking = false;
         attacking = false;
@@ -145,6 +150,7 @@ public class Player : MonoBehaviour
         PlayerStats.weaponWheel(0);
         changingWeapon = false;
         direcao = Vector3.zero;
+        
     }
     IEnumerator Slide (int dir)
     {
@@ -186,14 +192,22 @@ public class Player : MonoBehaviour
             change = Vector3.zero;
             change.x = Input.GetAxisRaw("Horizontal");
             change.y = Input.GetAxisRaw("Vertical");
+            if(Math.Abs(change.x) < 0.39f)
+            {
+                change.x = 0;
+            }
+            if (Math.Abs(change.y) < 0.39f)
+            {
+                change.y = 0;
+            }
             direcao = change;
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking && PlayerStats.getSliding() == 0)
+            if ((Input.GetKeyDown(KeyCode.Mouse0) || GetFaceButtonDown()) && !attacking && PlayerStats.getSliding() == 0)
             {
                 StartCoroutine(Attack(0.18f));
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) && !changingWeapon)
+            if ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown("joystick 1 button 4")) && !changingWeapon)
             {
                 PlayerStats.weaponWheel(-1);
                 StartCoroutine(Wait(0.15f));
@@ -201,7 +215,7 @@ public class Player : MonoBehaviour
             }
 
 
-            else if (Input.GetKeyDown(KeyCode.E) && !changingWeapon)
+            else if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick 1 button 5")) && !changingWeapon)
             {
                 PlayerStats.weaponWheel(1);
                 StartCoroutine(Wait(0.15f));

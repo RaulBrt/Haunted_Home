@@ -72,7 +72,7 @@ public class PauseMenu : MonoBehaviour
         {
             spriteRenderer.sprite = sprites[0];
         }
-        if (Input.GetKeyDown(KeyCode.Escape)){
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("joystick 1 button 8") || Input.GetKeyDown("joystick 1 button 9")){
             change = !change;
         }
         if (change)

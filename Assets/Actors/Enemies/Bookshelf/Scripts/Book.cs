@@ -20,48 +20,54 @@ public class Book : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player_coll = collision.gameObject.GetComponent<Player>();
-        BottomWall bw = collision.gameObject.GetComponent<BottomWall>();
-        TopWall tw = collision.gameObject.GetComponent<TopWall>();
-        LeftWall lw = collision.gameObject.GetComponent<LeftWall>();
-        RightWall rw = collision.gameObject.GetComponent<RightWall>();
-        if (player_coll != null)
+        if (!PauseMenu.getPaused())
         {
-            if (play.attacking && !og)
+            Player player_coll = collision.gameObject.GetComponent<Player>();
+            BottomWall bw = collision.gameObject.GetComponent<BottomWall>();
+            TopWall tw = collision.gameObject.GetComponent<TopWall>();
+            LeftWall lw = collision.gameObject.GetComponent<LeftWall>();
+            RightWall rw = collision.gameObject.GetComponent<RightWall>();
+            if (player_coll != null)
+            {
+                if (play.attacking && !og)
+                {
+                    Object.Destroy(gameObject);
+                }
+                else if (!PlayerStats.getInvincible() && !play.attacking)
+                {
+                    PlayerStats.setDealtDmg(true);
+                    PlayerStats.setHealth(PlayerStats.getHealth() - 5);
+                }
+            }
+            else if (lw != null || rw != null || tw != null || bw != null)
             {
                 Object.Destroy(gameObject);
             }
-            else if (!PlayerStats.getInvincible() && !play.attacking)
-            {
-                PlayerStats.setDealtDmg(true);
-                PlayerStats.setHealth(PlayerStats.getHealth() - 5);
-            }
-        }
-        else if (lw != null || rw != null || tw != null || bw != null)
-        {
-            Object.Destroy(gameObject);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Player player_coll = collision.gameObject.GetComponent<Player>();
-        BottomWall bw = collision.gameObject.GetComponent<BottomWall>();
-        TopWall tw = collision.gameObject.GetComponent<TopWall>();
-        LeftWall lw = collision.gameObject.GetComponent<LeftWall>();
-        RightWall rw = collision.gameObject.GetComponent<RightWall>();
-        if (player_coll != null)
+        if (!PauseMenu.getPaused())
         {
-            
-            if (!PlayerStats.getInvincible() && !play.attacking)
+            Player player_coll = collision.gameObject.GetComponent<Player>();
+            BottomWall bw = collision.gameObject.GetComponent<BottomWall>();
+            TopWall tw = collision.gameObject.GetComponent<TopWall>();
+            LeftWall lw = collision.gameObject.GetComponent<LeftWall>();
+            RightWall rw = collision.gameObject.GetComponent<RightWall>();
+            if (player_coll != null)
             {
-                PlayerStats.setDealtDmg(true);
-                PlayerStats.setHealth(PlayerStats.getHealth() - 3);
+
+                if (!PlayerStats.getInvincible() && !play.attacking)
+                {
+                    PlayerStats.setDealtDmg(true);
+                    PlayerStats.setHealth(PlayerStats.getHealth() - 3);
+                }
             }
-        }
-        else if (lw != null || rw != null || tw != null || bw != null)
-        {
-            Object.Destroy(gameObject);
+            else if (lw != null || rw != null || tw != null || bw != null)
+            {
+                Object.Destroy(gameObject);
+            }
         }
     }
     void Start()
@@ -98,23 +104,26 @@ public class Book : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(BS.getHealth() <= 0 || !BS.enabled)
+        if (!PauseMenu.getPaused())
         {
-            Object.Destroy(gameObject);
-        }
-        if (!og)
-        {
-            pos.x += Mathf.Cos(angle) * speed;
-            pos.y += Mathf.Sin(angle) * speed;
-            action = Random.Range(0, 100);
-            if (action >= 98)
+            if (BS.getHealth() <= 0 || !BS.enabled)
             {
-                angle = Random.Range(0, 360);
-                angle *= Mathf.PI / 180;
+                Object.Destroy(gameObject);
             }
-            rig.MovePosition(pos);
+            if (!og)
+            {
+                pos.x += Mathf.Cos(angle) * speed;
+                pos.y += Mathf.Sin(angle) * speed;
+                action = Random.Range(0, 100);
+                if (action >= 98)
+                {
+                    angle = Random.Range(0, 360);
+                    angle *= Mathf.PI / 180;
+                }
+                rig.MovePosition(pos);
+            }
+            anim.SetFloat("Tan", Mathf.Tan(angle));
         }
-        anim.SetFloat("Tan", Mathf.Tan(angle));
     }
     void LateUpdate()
     {
@@ -123,5 +132,6 @@ public class Book : MonoBehaviour
             spriteRenderer.sprite.GetPhysicsShape(0, physicsShape);
             col.SetPath(0, physicsShape);
         }
+
     }
 }

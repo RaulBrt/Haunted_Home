@@ -122,7 +122,7 @@ public class Vacuum : MonoBehaviour{
             {
                 Debug.Log(PlayerStats.getInvincible() + "," + vac_play.attacking);
                 PlayerStats.setDealtDmg(true);
-                PlayerStats.setHealth(PlayerStats.getHealth() - 10);
+                PlayerStats.setHealth(PlayerStats.getHealth() - 7);
             }
         }
     }
@@ -132,7 +132,7 @@ public class Vacuum : MonoBehaviour{
         mod = 1;
         if(PlayerStats.weaponWheel(0) == 2)
         {
-            mod = 1.5f;
+            mod = 2f;
         }
         else if(PlayerStats.weaponWheel(0) == 1)
         {
@@ -160,10 +160,10 @@ public class Vacuum : MonoBehaviour{
         vac_play = FindObjectOfType<Player>();
         col = GetComponent<PolygonCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        vac_speed = 2;
+        vac_speed = 1.5f;
         coffing = false;
         rushing = false;
-        health = 300;
+        health = 200;
         mod = 1;
         StartCoroutine(delay(1.5f));
     }
@@ -173,17 +173,17 @@ public class Vacuum : MonoBehaviour{
         vac_rig.mass = 1;
         action = UnityEngine.Random.Range(0, 1000);
         vac_anim.SetInteger("Walking Angle", getWalkingDir(getWalkingAngle(getDir())));
-        if (action <= 975 && !coffing && !rushing){
+        if (action <= 965 && !coffing && !rushing){
             Walk(vac_speed);
         }
-        else if ((action > 975 && action <= 980 && !coffing) || rushing) {
+        else if ((action > 985 && action <= 990 && !coffing) || rushing) {
             if (!rushing){
                 StartCoroutine(Rush(0.5f));
             }
             vac_pos += rush_dir * 0.25f;
             vac_rig.MovePosition(vac_pos);
         }
-        if(action > 980 && !rushing){
+        if(action > 990 && !rushing){
             Coff();
             coffing = false;
         }

@@ -825,43 +825,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8866982, y: 70.54429}
   m_EdgeRadius: 0
---- !u!1001 &1185081770
+--- !u!1001 &974077992
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2154020595492656764, guid: a304d454a7baebf4e989e0ce03aa5722,
-        type: 3}
-      propertyPath: sounds.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2154020595492656764, guid: a304d454a7baebf4e989e0ce03aa5722,
-        type: 3}
-      propertyPath: sounds.Array.data[0].name
-      value: Damage
-      objectReference: {fileID: 0}
-    - target: {fileID: 2154020595492656764, guid: a304d454a7baebf4e989e0ce03aa5722,
-        type: 3}
-      propertyPath: sounds.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 454c2695531f97d4c847f4f357848fcb, type: 3}
-    - target: {fileID: 2154020595492656764, guid: a304d454a7baebf4e989e0ce03aa5722,
-        type: 3}
-      propertyPath: sounds.Array.data[1].name
-      value: Inhale
-      objectReference: {fileID: 0}
-    - target: {fileID: 2154020595492656764, guid: a304d454a7baebf4e989e0ce03aa5722,
-        type: 3}
-      propertyPath: sounds.Array.data[0].volume
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2154020595492656764, guid: a304d454a7baebf4e989e0ce03aa5722,
-        type: 3}
-      propertyPath: sounds.Array.data[1].volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2154020595492656765, guid: a304d454a7baebf4e989e0ce03aa5722,
         type: 3}
       propertyPath: m_Name

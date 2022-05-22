@@ -18,7 +18,7 @@ public class PianoHB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = (int)(piano.getHealth() * 0.24f);
+        health = (int)(piano.getHealth() * 0.024f);
         if (health < 0)
         {
             health = 0;

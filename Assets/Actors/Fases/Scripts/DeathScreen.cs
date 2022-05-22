@@ -19,7 +19,6 @@ public class DeathScreen : MonoBehaviour{
         isDead = true;
         anim.SetBool("isDead", isDead);
         StartCoroutine(delay(3));
-        
     }
     void Update() {
         if (terminou){

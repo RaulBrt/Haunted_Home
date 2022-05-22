@@ -26,7 +26,7 @@ public class Partiture : MonoBehaviour
         Debug.Log("Rodando");
         while (true)
         {
-            gameObject.transform.Rotate(new Vector3(0, 0, mod*0.7f));
+            gameObject.transform.Rotate(new Vector3(0, 0, mod*0.55f));
             yield return new WaitForSeconds(segundos);
         }
     }

@@ -17,7 +17,7 @@ public class VacuumHB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = (int)(vac.getHealth()*0.04f);
+        health = (int)(vac.getHealth()*0.06f);
 
         if(health < 0)
         {

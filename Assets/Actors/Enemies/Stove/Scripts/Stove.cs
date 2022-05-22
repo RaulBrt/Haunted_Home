@@ -92,8 +92,8 @@ public class Stove : MonoBehaviour{
     void Update()
     {
         coff = false;
-        action = UnityEngine.Random.Range(0, 10000);
-        if (action >= 9900 && !inhaling)
+        action = UnityEngine.Random.Range(0, 1000);
+        if (action >= 995 && !inhaling)
         {
             StartCoroutine(Shoot(0.2f));
         }
@@ -101,7 +101,7 @@ public class Stove : MonoBehaviour{
             clock = Time.time;
             marked = true;
         }
-        if ((marked && Time.time - clock >= 3 && !inhaling) || Input.GetKey(KeyCode.G)){
+        if ((marked && Time.time - clock >= 3 && !inhaling)){
             inhaling = true;
             StartCoroutine(Inhale());
         }

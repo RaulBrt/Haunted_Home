@@ -6,7 +6,7 @@ using UnityEngine;
 
 public static class PlayerStats{
     static int i, activeWeapon, sliding;
-    static int maxWeapon = 5;
+    static int maxWeapon = 3;
     static int health = 120;
     static bool[] DefeatedBosses = new bool[3];
     static bool[] Powerup = new bool[maxWeapon+1];
@@ -110,6 +110,14 @@ public static class PlayerStats{
 
         }
     }*/
+    public static bool getEn()
+    {
+        return en;
+    }
+    public static void setEn(bool lang)
+    {
+        en = lang;
+    }
     public static void Awake(){
         if (!started)
         {
@@ -129,14 +137,5 @@ public static class PlayerStats{
             started = true;
             sliding = 0;
         }
-    }
-
-    public static bool getEn()
-    {
-        return en;
-    }
-    public static void setEn(bool lang)
-    {
-        en = lang;
     }
 }

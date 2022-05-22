@@ -3,19 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class Player : MonoBehaviour
 {
 
     float passo = 20f;
     [SerializeField] string levelName;
+    [SerializeField] bool somPasso;
+    bool jaTocando;
     Rigidbody2D player_rig;
     BoxCollider2D player_coll;
     SpriteRenderer spriteRenderer;
     AudioManager audioManager;
     Vector3 change,direcao;
     public Animator anim;
-    bool[] key = new bool[5] { false, false, false, false, false };
-    bool[] attack = new bool[4] { false, false, false, false };
     public bool isAttacking, attacking, walking, changingWeapon;
     int i, lastPos;
 
@@ -42,50 +43,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(tempo);
         changingWeapon = false;
     }
-    public int getAttackDir()
-    {
-        int dir = 0;
-        int i;
-        bool btn = false;
-        for (i = 0; i < 4; i++)
-        {
-            if (attack[i])
-            {
-                btn = true;
-                break;
-            }
-        }
-        if (btn)
-        {
-            if (attack[0])
-                dir = 1;
-            else if (attack[2])
-                dir = 5;
-            else if (attack[1])
-                dir = 7;
-            else if (attack[3])
-                dir = 3;
-            return dir;
-        }
-        else
-        {
-            return lastPos;
-        }
-
-    }
-    int getDir()
-    {
-        int dir = 0;
-        if (key[0])
-            dir = 1;
-        else if (key[2])
-            dir = 5;
-        else if (key[1])
-            dir = 7;
-        else if (key[3])
-            dir = 3;
-        return dir;
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -98,8 +55,6 @@ public class Player : MonoBehaviour
                 StartCoroutine(IFrames(0.5f));
             }
         }
-
-        //Debug.Log(PlayerStats.getHealth());
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -112,8 +67,6 @@ public class Player : MonoBehaviour
                 StartCoroutine(IFrames(0.5f));
             }
         }
-
-        //Debug.Log(PlayerStats.getHealth());
     }
     void die()
     { 
@@ -134,25 +87,8 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    void Awake()
-    {
-        PlayerStats.Awake();
-        player_rig = GetComponent<Rigidbody2D>();
-        player_coll = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        audioManager = FindObjectOfType<AudioManager>();
-        anim = GetComponent<Animator>();
-        isAttacking = false;
-        attacking = false;
-        walking = false;
-        PlayerStats.setInvincible(false);
-        lastPos = 0;
-        PlayerStats.weaponWheel(0);
-        changingWeapon = false;
-        direcao = Vector3.zero;
-        
-    }
-    IEnumerator Slide (int dir)
+
+    /*IEnumerator Slide (int dir)
     {
         float slideVel = 0.1f;
         Vector3 vel = Vector3.zero;
@@ -180,15 +116,46 @@ public class Player : MonoBehaviour
         }
 
         yield return null;
-    }
-    public Vector3 getDirecao()
+    }*/
+    /*public Vector3 getDirecao()
     {
         return direcao;
+    }*/
+
+    void playPasso()
+    {
+        int index = UnityEngine.Random.Range(1, 10);
+        Debug.Log("Passo" + index);
+        audioManager.Play("Passo" + index);
     }
+
+    void Awake()
+    {
+        PlayerStats.Awake();
+        player_rig = GetComponent<Rigidbody2D>();
+        player_coll = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = FindObjectOfType<AudioManager>();
+        anim = GetComponent<Animator>();
+        isAttacking = false;
+        attacking = false;
+        walking = false;
+        PlayerStats.setInvincible(false);
+        lastPos = 0;
+        PlayerStats.weaponWheel(0);
+        changingWeapon = false;
+        direcao = Vector3.zero;
+        somPasso = false;
+    }
+
     void Update()
     {
         if (!PauseMenu.getPaused())
         {
+            if (somPasso)
+            {
+                playPasso();
+            }
             change = Vector3.zero;
             change.x = Input.GetAxisRaw("Horizontal");
             change.y = Input.GetAxisRaw("Vertical");
@@ -204,6 +171,7 @@ public class Player : MonoBehaviour
 
             if ((Input.GetKeyDown(KeyCode.Mouse0) || GetFaceButtonDown()) && !attacking && PlayerStats.getSliding() == 0)
             {
+                audioManager.Play("Ataque");
                 StartCoroutine(Attack(0.18f));
             }
 
@@ -229,24 +197,14 @@ public class Player : MonoBehaviour
                 anim.SetFloat("movimentoY", change.y);
                 anim.SetBool("Walk", true);
             }
-            else if (PlayerStats.getSliding() != 0)
+            /*else if (PlayerStats.getSliding() != 0)
             {
                 Debug.Log("Slide: " + PlayerStats.getSliding());
                 StartCoroutine(Slide(PlayerStats.getSliding()));
-            }
+            }*/
             else
             {
                 anim.SetBool("Walk", false);
-            }
-            //Debug.Log(change * passo * Time.deltaTime);
-            anim.SetInteger("AtkDir", getAttackDir());
-            if (walking)
-            {
-                anim.SetInteger("Dir", getDir());
-            }
-            else
-            {
-                anim.SetInteger("Dir", 0);
             }
             anim.SetInteger("LastPos", lastPos);
             anim.SetBool("Attack", attacking);

@@ -90,6 +90,7 @@
      <Compile Include="Assets\Actors\Fases\Scripts\Stairs.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\StorageExit.cs" />
      <Compile Include="Assets\Actors\Fases\Scripts\Wall.cs" />
+     <Compile Include="Assets\Actors\Fases\Scripts\night.cs" />
      <Compile Include="Assets\Actors\Player\Scripts\Player.cs" />
      <Compile Include="Assets\Actors\Player\Scripts\PlayerATK.cs" />
      <Compile Include="Assets\Actors\Player\Scripts\PlayerStats.cs" />
@@ -97,6 +98,7 @@
      <Compile Include="Assets\Audio\Scripts\Sound.cs" />
      <Compile Include="Assets\Scenes\Cutscenes\LoadSceneAfterVideoEnded.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\ComoJogar.cs" />
+     <Compile Include="Assets\Scenes\Menus\MainMenu\Creditos.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\MudarLingua.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\Play.cs" />
      <Compile Include="Assets\Scenes\Menus\MainMenu\Quit.cs" />

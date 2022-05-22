@@ -1,22 +1,24 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Piano : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Note;
     public Animator anim;
+    AudioManager audioManager;
     Partiture Part;
     bool notas,partitura;
     int action, health;
+    [SerializeField] string levelName;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("colisao");
         if (collision.gameObject.CompareTag("Attack"))
         {
-            Debug.Log(health);
-            health -= 1;
+            health -= 10;
             StartCoroutine(IFrames(0.2f));
 
         }
@@ -88,10 +90,11 @@ public class Piano : MonoBehaviour
     {
         Part = GameObject.FindObjectOfType<Partiture>();
         anim = GetComponent<Animator>();
+        audioManager = FindObjectOfType<AudioManager>();
         partitura = false;
         notas = false;
         action = 0;
-        health = 50;
+        health = 500;
     }
 
     // Update is called once per frame
@@ -119,6 +122,7 @@ public class Piano : MonoBehaviour
         {
             //PlayerStats.setDefeated(1, true);
             gameObject.SetActive(false);
+            SceneManager.LoadScene(levelName);
         }
     }
 }

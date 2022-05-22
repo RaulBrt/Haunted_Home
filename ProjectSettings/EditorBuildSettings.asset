@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Piano.unity
     guid: 5d07df84ec3d7f24c886b9549ae98a36
+  - enabled: 1
+    path: Assets/Scenes/Cut3.unity
+    guid: 2c108adadf21c5c4e84eb81fdd103e10
   m_configObjects: {}

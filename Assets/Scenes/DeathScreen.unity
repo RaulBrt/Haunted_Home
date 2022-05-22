@@ -319,8 +319,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelName: Main Hall
+  sprites: []
+  spriteRenderer: {fileID: 0}
   anim: {fileID: 473197264}
---- !u!1 &1443446542
+--- !u!1 &1021634792
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -328,22 +330,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1443446544}
-  - component: {fileID: 1443446543}
+  - component: {fileID: 1021634794}
+  - component: {fileID: 1021634793}
+  - component: {fileID: 1021634795}
   m_Layer: 0
-  m_Name: YouDied
+  m_Name: bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!212 &1443446543
+--- !u!212 &1021634793
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443446542}
+  m_GameObject: {fileID: 1021634792}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -376,28 +379,44 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e2f4c906790f1f74d81a2ea1fb986297, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 78071398a88c4ed4d8e517378c59140f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12.8, y: 7.2}
+  m_Size: {x: 12.8, y: 2.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1443446544
+--- !u!4 &1021634794
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443446542}
+  m_GameObject: {fileID: 1021634792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.914, z: 0}
-  m_LocalScale: {x: 0.8325972, y: 0.59105533, z: 0.59105533}
+  m_LocalPosition: {x: 0.021, y: -2.943, z: 0}
+  m_LocalScale: {x: 1.5058943, y: 1.5058943, z: 1.5058943}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1021634795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021634792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f213c394c87cf409553f461f97e2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 1c937ac281578f447842332c0b998433, type: 3}
+  - {fileID: 21300000, guid: 78071398a88c4ed4d8e517378c59140f, type: 3}
+  spriteRenderer: {fileID: 1021634793}

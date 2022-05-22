@@ -25,6 +25,7 @@ public class Nota : MonoBehaviour
         Nota note = collision.gameObject.GetComponent<Nota>();
         Piano piano = collision.gameObject.GetComponent<Piano>();
         Player player_coll = collision.gameObject.GetComponent<Player>();
+
         if (!og)
         {
             if (note != null || piano != null) { }
@@ -33,16 +34,18 @@ public class Nota : MonoBehaviour
                 if (player_coll != null && !PlayerStats.getInvincible())
                 {
                    PlayerStats.setDealtDmg(true);
-                   PlayerStats.setHealth(PlayerStats.getHealth() - 15);
+                   PlayerStats.setHealth(PlayerStats.getHealth() - 10);
                 }
-                Object.Destroy(gameObject);
+                if (!collision.gameObject.CompareTag("Attack")){
+                    Object.Destroy(gameObject);
+                }
             }
         }
     }
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        coll = GetComponent<PolygonCollider2D>();
         nota = FindObjectsOfType<Nota>();
         if (nota.Length <= 1)
         {
@@ -55,7 +58,6 @@ public class Nota : MonoBehaviour
             og = false;
             rig = GetComponent<Rigidbody2D>();
             play = FindObjectOfType<Player>();
-            coll = GetComponent<PolygonCollider2D>();
             startPos = rig.position;
             angle *= Mathf.PI / 180;
             if (speed == 0)

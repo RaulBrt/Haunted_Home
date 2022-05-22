@@ -15,7 +15,7 @@ public class Agua : MonoBehaviour
     {
         play = FindObjectOfType<Player>();
     }
-    int getDir()
+    /*int getDir()
     {
         int dir = 0;
 
@@ -45,14 +45,14 @@ public class Agua : MonoBehaviour
         }
 
         return dir;
-    }
+    }*/
     void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Agua");
         Player player_coll = collision.gameObject.GetComponent<Player>();
         if (player_coll != null)
         {
-            PlayerStats.setSliding(getDir());
+            //PlayerStats.setSliding(getDir());
         }
     }
 

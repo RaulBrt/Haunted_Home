@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cut3.unity
     guid: 2c108adadf21c5c4e84eb81fdd103e10
+  - enabled: 1
+    path: Assets/Scenes/Creditos.unity
+    guid: 8fb37eb6f098f124a998061e1950208b
   m_configObjects: {}

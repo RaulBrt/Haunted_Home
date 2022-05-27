@@ -16,6 +16,7 @@ public class LoadSceneAfterVideoEnded : MonoBehaviour
     }
     void Start()
     {
+        PlayerStats.setHealth(120);
         isCheckPlaying = false;
         triggered = false;
         VP.loopPointReached += LoadScene;

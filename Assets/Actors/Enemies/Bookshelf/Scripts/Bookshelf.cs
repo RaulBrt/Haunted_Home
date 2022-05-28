@@ -132,7 +132,7 @@ public class Bookshelf : MonoBehaviour
         pos = rig.position;
         lookAngle = 270;
         health = 350;
-        passo = 2;
+        passo = 1;
         isAttack = false;
         mark = false;
         mark2 = false;
@@ -188,7 +188,7 @@ public class Bookshelf : MonoBehaviour
         if (health <= 0)
         {
             BookPUp bookPup = FindObjectOfType<BookPUp>();
-            bookPup.GetComponent<Transform>().position = new Vector3(0,-1, 0);
+            bookPup.GetComponent<Transform>().position = new Vector3(0, 3, 0);
             PlayerStats.setDefeated(2, true);
             UnityEngine.Object.Destroy(gameObject);
         }

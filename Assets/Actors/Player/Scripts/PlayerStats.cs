@@ -9,7 +9,7 @@ public static class PlayerStats{
     static int maxWeapon = 3;
     static int health = 120;
     static bool[] DefeatedBosses = new bool[3];
-    static bool[] Powerup = new bool[maxWeapon+1];
+    static bool[] Powerup = new bool[4];
     static bool DealtDmg, Invincible;
     static bool started = false;
     static bool en = false;

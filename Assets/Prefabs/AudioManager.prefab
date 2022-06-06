@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2154020595492656765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2154020595492656767}
+  - component: {fileID: 2154020595492656764}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2154020595492656767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154020595492656765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2154020595492656764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2154020595492656765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b88a067aace3b4d9da71136ed8b4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Damage
+    clip: {fileID: 8300000, guid: feee76cc884311941a040dc3c3584732, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Ataque
+    clip: {fileID: 8300000, guid: a34519f34ac598240958b5071c20666f, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo1
+    clip: {fileID: 8300000, guid: 6b489f16e190ebb46a3cb413651ac92a, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo2
+    clip: {fileID: 8300000, guid: 3a4161a2a700ced4eb33bf286ab70289, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo3
+    clip: {fileID: 8300000, guid: 0d68e47b8dbac794cbe5d29409021b2d, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo4
+    clip: {fileID: 8300000, guid: 5178f7695b18d304ea71e66a2cafa37d, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo5
+    clip: {fileID: 8300000, guid: 34a287ae648c4da46ac4cd94c733d798, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo6
+    clip: {fileID: 8300000, guid: 3a1cd3806f28b914ebb70989ca7d5353, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo7
+    clip: {fileID: 8300000, guid: 23db846bfcae4d74b8aa2d6a8167b49e, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo8
+    clip: {fileID: 8300000, guid: 22ce12f97901b784aae1ed94a51d0254, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo9
+    clip: {fileID: 8300000, guid: 66175303742a37a4b85737579ec9409b, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Passo10
+    clip: {fileID: 8300000, guid: 74d98cb84a797db4bbffd1724ec0b59b, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 8d5573a7a8927364fa8220671a7f337b, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
